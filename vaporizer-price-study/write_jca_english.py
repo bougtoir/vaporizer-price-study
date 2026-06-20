@@ -680,8 +680,10 @@ def write_jca_paper():
         'successive regulatory milestones. Sevoflurane and isoflurane vaporizer prices remained '
         'stable throughout\u2014despite being traded on the same marketplace and subject to the '
         'same macroeconomic conditions. The convergence of evidence from Spearman rank '
-        'correlation (P<0.001 for desflurane, P=0.86 for sevoflurane), Kendall \u03c4 '
-        '(P=0.049 vs P=0.36), and the between-agent effect size comparison (P=0.043) '
+        f'correlation (P={fmt_p(des_tr["spearman_p"])} for desflurane, '
+        f'P={fmt_p(sevo_tr["spearman_p"])} for sevoflurane), Kendall \u03c4 '
+        f'(P={fmt_p(des_tr["kendall_p"])} vs P={fmt_p(sevo_tr["kendall_p"])}), '
+        f'and the between-agent effect size comparison (P={fmt_p(des_vs_sevo["p"])}) '
         'suggests a progressive and agent-specific price decline.')
 
     sevo_vs_iso = es_comparisons['Sevoflurane_vs_Isoflurane']
