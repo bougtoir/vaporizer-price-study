@@ -573,7 +573,7 @@ def write_jca_paper():
         f'Dr\u00e4ger D-Vapor models; '
         f'sevoflurane vaporizers included Dr\u00e4ger Vapor 2000, Penlon Sigma Delta, and Tec 7 '
         f'models; isoflurane vaporizers included Ohmeda Tec 3, Tec 5, Tec 7, and Dr\u00e4ger '
-        f'Vapor 2000 models.')
+        f'Vapor 2000 models (Fig. 1).')
 
     # Table placeholders
     doc.add_paragraph()
@@ -593,10 +593,10 @@ def write_jca_paper():
         f'(\u03c1={des_tr["spearman_rho"]:.2f}, P<0.001). Kendall \u03c4 analysis '
         f'confirmed that prices decreased across successive regulatory phases '
         f'(\u03c4={des_tr["kendall_tau"]:.2f}, '
-        f'P={fmt_p(des_tr["kendall_p"])}). '
+        f'P={fmt_p(des_tr["kendall_p"])}) (Fig. 2). '
         f'At the aggregated level, quarterly median prices also showed a significant downward trend '
         f'(\u03c1={des_tr["quarterly_rho"]:.2f}, '
-        f'P={fmt_p(des_tr["quarterly_p"])}) (Table 1).')
+        f'P={fmt_p(des_tr["quarterly_p"])}) (Table 1; Fig. 3).')
     doc.add_paragraph(
         f'In the exploratory pre-/post-ban comparison, the post-ban mean price '
         f'(US${des["post_mean"]:.0f} \u00b1 {des["post_sd"]:.0f}) was {abs(des_pct_val):.0f}% '
@@ -605,7 +605,7 @@ def write_jca_paper():
         f'(P={fmt_p(des_t_pval)}) but did not reach significance on the '
         f'Mann\u2013Whitney U test (P={fmt_p(des_u_pval)}), likely reflecting the '
         f'small post-ban sample (n={des["post_n"]}). The effect size was medium '
-        f'(Cohen\u2019s d={des_d:.2f}) (Table 2, Panel A).')
+        f'(Cohen\u2019s d={des_d:.2f}) (Table 2, Panel A; Fig. 4).')
 
     sevo_pct = (sevo['post_mean'] - sevo['pre_mean']) / sevo['pre_mean'] * 100
     iso_pct = (iso['post_mean'] - iso['pre_mean']) / iso['pre_mean'] * 100
@@ -616,7 +616,7 @@ def write_jca_paper():
         f'Kendall \u03c4={sevo_tr["kendall_tau"]:.2f}, '
         f'P={fmt_p(sevo_tr["kendall_p"])}). '
         f'Pre-/post-ban comparison showed a non-significant {abs(sevo_pct):.0f}% increase '
-        f'(P={fmt_p(sevo_u_pval)}, Mann\u2013Whitney U).')
+        f'(P={fmt_p(sevo_u_pval)}, Mann\u2013Whitney U) (Fig. 5).')
     doc.add_paragraph(
         f'Isoflurane vaporizer prices were similarly stable. Although Spearman correlation '
         f'reached nominal significance (\u03c1={iso_tr["spearman_rho"]:.2f}, '
@@ -624,7 +624,7 @@ def write_jca_paper():
         f'median trend was not significant (\u03c1={iso_tr["quarterly_rho"]:.2f}, '
         f'P={fmt_p(iso_tr["quarterly_p"])}). '
         f'The pre-/post-ban comparison showed a non-significant {abs(iso_pct):.0f}% decline '
-        f'(P={fmt_p(iso_u_pval)}, Mann\u2013Whitney U).')
+        f'(P={fmt_p(iso_u_pval)}, Mann\u2013Whitney U) (Fig. 6).')
 
     # Between-agent effect size comparison
     des_vs_sevo = es_comparisons['Desflurane_vs_Sevoflurane']
@@ -715,9 +715,9 @@ def write_jca_paper():
         'and Metta{13} articulated the global and financial rationale for desflurane '
         'discontinuation, while Moonesinghe{12} discussed the broader implications of '
         'decommissioning programs, but none examined downstream effects on the secondary '
-        'equipment market. Our findings are consistent with the broader economic literature '
-        'on regulatory obsolescence,{19} where anticipated government restrictions are '
-        'associated with anticipatory price declines in secondary markets.')
+        'equipment market. Our findings are consistent with the broader literature on '
+        'environment-related stranded assets,{19} where anticipated regulatory restrictions '
+        'are associated with anticipatory declines in asset values.')
 
     doc.add_paragraph(
         'The timing of the price decline may have practical implications. A substantial '
@@ -827,14 +827,15 @@ def write_jca_paper():
         '7 February 2024 on fluorinated greenhouse gases. Official Journal of the European '
         'Union 2024;L 2024/573.',
         # 3 - Intro {1-5}
-        'Sherman JD, Chesebro BB. Inhaled anesthetic climate and ozone effects: a narrative '
-        'review. Anesth Analg 2023;137:201\u201315.',
+        'Sherman J, Le C, Lamers V, Eckelman M. Life cycle greenhouse gas emissions of '
+        'anesthetic drugs. Anesth Analg 2012;114:1086\u201390.',
         # 4 - Intro {1-5}
-        'European Society of Anaesthesiology and Intensive Care. ESAIC position statement on '
-        'the use of desflurane. Eur J Anaesthesiol 2024;41:1\u20133.',
+        'Hendrickx JFA, Nielsen OJ, De Hert S, De Wolf AM. The science behind banning '
+        'desflurane: a narrative review. Eur J Anaesthesiol 2022;39:818\u201324.',
         # 5 - Intro {1-5}
-        'Association of Anaesthetists. Environmental sustainability in anaesthesia and '
-        'perioperative medicine. Anaesthesia 2023;78:219\u201330.',
+        'White SM, Shelton CL, Gelb AW, et al. Principles of environmentally-sustainable '
+        'anaesthesia: a global consensus statement from the World Federation of Societies of '
+        'Anaesthesiologists. Anaesthesia 2022;77:201\u201312.',
         # 6 - Intro {6}: ASA N2O recommendation
         'American Society of Anesthesiologists Committee on Environmental Health. Statement on '
         'deactivating central piped nitrous oxide to mitigate avoidable health care pollution. '
@@ -867,18 +868,20 @@ def write_jca_paper():
         'Rauchenwald V, Heuss-Azeez R, Ganter MT, et al. Sevoflurane versus desflurane\u2014'
         'an economic analysis. BMC Anesthesiol 2020;20:272.',
         # 16 - Intro {15,16}
-        'Beard D, Aston W, Black S, et al. Environmental and economic impacts of end-tidal '
-        'control of volatile anaesthetics. Open Anaesth J 2025;19:e18742126.',
+        'Beard J, Kennedy R, Philip J, et al. Environmental and economic impacts of end-tidal '
+        'control of volatile anesthetics: a scoping review and analysis. Open Anesthesiol J '
+        '2025;19:e25896458355905.',
         # 17 - Intro {17}: secondary market characterization
-        'Buckhead Fair Market Value. 2025 Benchmark Report on Pre-Owned Medical Equipment '
-        'Prices. Atlanta, GA: BFMV, 2025.',
+        'Shukla S, Kalaiselvan V, Raghuvanshi RS. How to improve regulatory practices for '
+        'refurbished medical devices. Bull World Health Organ 2023;101:412\u20137.',
         # 18 - Methods STROBE {18}
         'von Elm E, Altman DG, Egger M, et al. The Strengthening the Reporting of '
         'Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting '
         'observational studies. BMJ 2007;335:806\u20138.',
-        # 19 - Discussion {19}: regulatory obsolescence
-        'Davis G, Patel N. Regulatory obsolescence and secondary market asset depreciation. '
-        'J Environ Econ Manage 2019;95:142\u201360.',
+        # 19 - Discussion {19}: stranded assets / regulatory anticipation
+        'Shimbar A. Environment-related stranded assets: what does the market think about the '
+        'impact of collective climate action on the value of fossil fuel stocks? Energy Econ '
+        '2021;103:105579.',
     ]
     for i, ref in enumerate(references, 1):
         p = doc.add_paragraph()
@@ -901,17 +904,17 @@ def write_jca_paper():
          'sevoflurane (blue), and isoflurane (green) vaporizers over three years (March 2023 to '
          'March 2026). Vertical dashed lines indicate key EU regulatory milestones. Curved lines '
          'represent LOWESS trend estimates (fraction = 0.3). Data source: eBay Terapeak.'),
-        ('Fig. 2. ', 'Box plot comparison of vaporizer prices before and after the EU desflurane '
+        ('Fig. 2. ', 'Anesthetic vaporizer prices mapped against the EU regulatory timeline. '
+         'Shaded regions indicate regulatory phases. Data source: eBay Terapeak.'),
+        ('Fig. 3. ', 'Quarterly median price trends (upper panel) and sales volume (lower panel). '
+         'Data source: eBay Terapeak.'),
+        ('Fig. 4. ', 'Box plot comparison of vaporizer prices before and after the EU desflurane '
          'ban (1 January 2026). Individual data points are shown as jittered dots. '
          'Data source: eBay Terapeak.'),
-        ('Fig. 3. ', 'Monthly median prices of anesthetic vaporizers on eBay. Annotations '
+        ('Fig. 5. ', 'Monthly median prices of anesthetic vaporizers on eBay. Annotations '
          'indicate the number of transactions per month (n). Data source: eBay Terapeak.'),
-        ('Fig. 4. ', 'Price distribution histograms for each vaporizer type, comparing pre-ban '
+        ('Fig. 6. ', 'Price distribution histograms for each vaporizer type, comparing pre-ban '
          '(solid fill) and post-ban (hatched) periods. Data source: eBay Terapeak.'),
-        ('Fig. 5. ', 'Anesthetic vaporizer prices mapped against the EU regulatory timeline. '
-         'Shaded regions indicate regulatory phases. Data source: eBay Terapeak.'),
-        ('Fig. 6. ', 'Quarterly median price trends (upper panel) and sales volume (lower panel). '
-         'Data source: eBay Terapeak.'),
     ]
     for fig_label, fig_text in legends:
         p = doc.add_paragraph()
