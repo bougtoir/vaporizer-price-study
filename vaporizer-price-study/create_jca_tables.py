@@ -107,9 +107,10 @@ def compute_trend(df):
         sp_rho, sp_p = sp_stats.spearmanr(ad['date_ord'], ad['price_usd'])
         kt_tau, kt_p = sp_stats.kendalltau(ad['period_num'], ad['price_usd'])
         ad['quarter'] = ad['date_sold'].dt.to_period('Q')
-        qm = ad.groupby('quarter')['price_usd'].median()
-        if len(qm) >= 3:
-            q_rho, q_p = sp_stats.spearmanr(range(len(qm)), qm.values)
+        qm = ad.groupby('quarter')['price_usd'].agg(['median', 'count'])
+        qm = qm[qm['count'] >= 3]
+        if len(qm) >= 4:
+            q_rho, q_p = sp_stats.spearmanr(range(len(qm)), qm['median'].values)
         else:
             q_rho, q_p = float('nan'), float('nan')
         trend_results[agent] = {
@@ -121,15 +122,13 @@ def compute_trend(df):
 
 
 def compute_effect_sizes(df):
+    stats_csv = pd.read_csv(os.path.join(DATA_DIR, 'statistics_summary.csv'), index_col=0)
     effect_sizes = {}
     for agent in ['Desflurane', 'Sevoflurane', 'Isoflurane']:
         ad = df[df['agent_type'] == agent]
-        pre = ad[ad['period'] == 'pre']['price_usd']
-        post = ad[ad['period'] == 'post']['price_usd']
-        n1, n2 = len(pre), len(post)
-        s1, s2 = pre.std(), post.std()
-        pooled = np.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))
-        d = (pre.mean() - post.mean()) / pooled if pooled > 0 else 0
+        n1 = len(ad[ad['period'] == 'pre'])
+        n2 = len(ad[ad['period'] == 'post'])
+        d = float(stats_csv.loc[agent, 'cohens_d'])
         se_d = np.sqrt((n1 + n2) / (n1 * n2) + d**2 / (2 * (n1 + n2)))
         ci_lo = d - 1.96 * se_d
         ci_hi = d + 1.96 * se_d
