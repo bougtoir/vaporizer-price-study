@@ -23,35 +23,35 @@ figures = [
                    'Data source: eBay Terapeak.',
     },
     {
-        'file': 'fig2_boxplot_comparison.png',
+        'file': 'fig5_regulatory_timeline.png',
         'label': 'Fig. 2.',
+        'caption': 'Anesthetic vaporizer prices mapped against the EU regulatory timeline. '
+                   'Shaded regions indicate regulatory phases. Data source: eBay Terapeak.',
+    },
+    {
+        'file': 'fig6_quarterly_trends.png',
+        'label': 'Fig. 3.',
+        'caption': 'Quarterly median price trends (upper panel) and sales volume (lower panel). '
+                   'Data source: eBay Terapeak.',
+    },
+    {
+        'file': 'fig2_boxplot_comparison.png',
+        'label': 'Fig. 4.',
         'caption': 'Box plot comparison of vaporizer prices before and after the EU desflurane '
                    'ban (1 January 2026). Individual data points are shown as jittered dots. '
                    'Data source: eBay Terapeak.',
     },
     {
         'file': 'fig3_monthly_median.png',
-        'label': 'Fig. 3.',
+        'label': 'Fig. 5.',
         'caption': 'Monthly median prices of anesthetic vaporizers on eBay. Annotations '
                    'indicate the number of transactions per month (n). Data source: eBay Terapeak.',
     },
     {
         'file': 'fig4_histograms.png',
-        'label': 'Fig. 4.',
+        'label': 'Fig. 6.',
         'caption': 'Price distribution histograms for each vaporizer type, comparing pre-ban '
                    '(solid fill) and post-ban (hatched) periods. Data source: eBay Terapeak.',
-    },
-    {
-        'file': 'fig5_regulatory_timeline.png',
-        'label': 'Fig. 5.',
-        'caption': 'Anesthetic vaporizer prices mapped against the EU regulatory timeline. '
-                   'Shaded regions indicate regulatory phases. Data source: eBay Terapeak.',
-    },
-    {
-        'file': 'fig6_quarterly_trends.png',
-        'label': 'Fig. 6.',
-        'caption': 'Quarterly median price trends (upper panel) and sales volume (lower panel). '
-                   'Data source: eBay Terapeak.',
     },
 ]
 
