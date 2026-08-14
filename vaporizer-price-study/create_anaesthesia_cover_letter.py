@@ -79,7 +79,7 @@ def write_english_cover_letter():
              'a statistically significant monotonic decline (Spearman \u03c1 = \u22120.28, '
              'p < 0.001), with progressive price erosion across successive regulatory '
              'milestones confirmed by Kendall \u03c4 (\u03c4 = \u22120.12, p = 0.049). '
-             'Pre-to-post-ban mean prices fell by 31% (Cohen\u2019s d = 0.55). '
+             'Pre-to-post-ban mean prices fell by 31% (Cohen\u2019s d = 0.47). '
              'Crucially, sevoflurane (\u03c1 = 0.01, p = 0.862) and isoflurane '
              '(\u03c1 = \u22120.086, p = 0.044) vaporiser prices remained clinically '
              'stable throughout, serving as natural comparator groups and strengthening '

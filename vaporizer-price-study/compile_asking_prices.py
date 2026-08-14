@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 """
+DEPRECATED: This script only compiles desflurane listings.
+Use compile_all_asking_prices.py instead, which includes all three agents
+(desflurane, sevoflurane, isoflurane) in a single dataset.
+
+Original purpose:
 Compile eBay asking price data from browser-extracted listings.
 Data collected on 2026-03-27 from eBay active listings.
 Prices are in JPY, converted to USD at 1 USD = 149.5 JPY (approximate rate).

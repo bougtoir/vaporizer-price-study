@@ -141,7 +141,7 @@ def main():
     style.font.size = Pt(12)
 
     # Header
-    add_para(doc, '13 August 2026', size=Pt(12))
+    add_para(doc, '14 August 2026', size=Pt(12))
     add_para(doc, 'Jianjun Yang, MD, Editor-in-Chief')
     add_para(doc, 'Journal of Anesthesia and Translational Medicine')
     add_para(doc, 'c/o Editorial Office')
@@ -228,9 +228,9 @@ def main():
         'Translational Medicine.')
     add_para(doc, '')
     add_para(doc, 'Sincerely,')
-    add_para(doc, '[Corresponding author name]')
-    add_para(doc, '[Affiliation]')
-    add_para(doc, 'Email: [email]')
+    add_para(doc, 'Onishi Tatsuki')
+    add_para(doc, 'Data Science and AI Innovation Research Promotion Center, Shiga University')
+    add_para(doc, 'E-mail: bougtoir@gmail.com')
 
     out_path = os.path.join(OUT_DIR, 'jatm_response_to_reviewers_R1.docx')
     doc.save(out_path)
