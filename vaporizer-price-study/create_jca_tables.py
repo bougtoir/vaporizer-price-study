@@ -19,9 +19,17 @@ DATA_DIR = os.path.join(SCRIPT_DIR, 'data')
 
 
 def fmt_p(p_val):
+    if np.isnan(p_val):
+        return 'N/A'
     if p_val < 0.001:
         return '<0.001'
     return f'{p_val:.3f}'
+
+
+def fmt_stat(val):
+    if np.isnan(val):
+        return 'N/A'
+    return f'{val:.3f}'
 
 
 def setup_doc():
@@ -187,7 +195,7 @@ def write_table1(df):
             (fmt_p(tr['spearman_p']), WD_ALIGN_PARAGRAPH.CENTER),
             (f'{tr["kendall_tau"]:.3f}', WD_ALIGN_PARAGRAPH.CENTER),
             (fmt_p(tr['kendall_p']), WD_ALIGN_PARAGRAPH.CENTER),
-            (f'{tr["quarterly_rho"]:.3f}', WD_ALIGN_PARAGRAPH.CENTER),
+            (fmt_stat(tr['quarterly_rho']), WD_ALIGN_PARAGRAPH.CENTER),
             (fmt_p(tr['quarterly_p']), WD_ALIGN_PARAGRAPH.CENTER),
         ]
         add_table_data_row(t1, data)
