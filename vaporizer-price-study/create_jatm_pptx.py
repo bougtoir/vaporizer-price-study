@@ -74,9 +74,8 @@ def create_pptx():
     tf = txBox.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
-    p.text = ('Targeted Environmental Regulation Without Observable Collateral '
-              'Market Damage:\nThe EU Desflurane Ban and Secondary Market '
-              'Vaporizer Prices')
+    p.text = ('Association between the EU desflurane phase-out and secondary market '
+              'vaporizer prices: an observational time-series analysis')
     p.font.size = Pt(28)
     p.font.bold = True
     p.font.color.rgb = RGBColor(0x1A, 0x47, 0x6F)

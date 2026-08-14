@@ -82,11 +82,28 @@ print("\n" + "=" * 60)
 print("FIGURE AND TABLE CITATION CHECK")
 print("=" * 60)
 
-full_text = '\n'.join(para.text for para in doc.paragraphs)
+# Build body text excluding figure/table captions and the References section.
+# Captions start with 'Fig.', 'Table', or '[Table'; the References section
+# follows the 'References' heading.
+body_paras = []
+in_references = False
+for para in doc.paragraphs:
+    text = para.text.strip()
+    if not text:
+        continue
+    if text == 'References':
+        in_references = True
+        continue
+    if in_references:
+        continue
+    if text.startswith('Fig.') or text.startswith('Table') or text.startswith('[Table'):
+        continue
+    body_paras.append(para.text)
+body_text = '\n'.join(body_paras)
 
 for i in range(1, 7):
     pattern = f'Fig. {i}'
-    count = full_text.count(pattern)
+    count = body_text.count(pattern)
     if count > 0:
         print(f"Fig. {i}: cited {count} time(s)")
     else:
@@ -94,14 +111,14 @@ for i in range(1, 7):
 
 for i in range(1, 3):
     pattern = f'Table {i}'
-    count = full_text.count(pattern)
+    count = body_text.count(pattern)
     if count > 0:
         print(f"Table {i}: cited {count} time(s)")
     else:
         print(f"Table {i}: *** NOT CITED ***")
 
 # Check Table S1
-if 'Table S1' in full_text:
+if 'Table S1' in body_text:
     print(f"Table S1: cited")
 else:
     print(f"Table S1: *** NOT CITED ***")
@@ -132,7 +149,7 @@ print(f"Total references: {ref_count}")
 # Check citation numbers in text
 max_cite = 0
 cite_pattern = re.compile(r'\{(\d+(?:[\u2013,-]\d+)*)\}')
-for m in cite_pattern.finditer(full_text):
+for m in cite_pattern.finditer(body_text):
     nums = re.findall(r'\d+', m.group(1))
     for n in nums:
         max_cite = max(max_cite, int(n))

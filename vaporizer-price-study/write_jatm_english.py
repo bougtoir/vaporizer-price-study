@@ -526,14 +526,14 @@ def write_jatm_paper():
     add_para_with_refs(doc,
         'Environmental regulation of healthcare products is accelerating. The European Union '
         'restricted desflurane\u2014the volatile anesthetic with the highest commonly reported '
-        '100-year global warming potential (GWP100 \u2248 2540 CO\u2082 equivalents){1,2,5\u20137}'
+        '100-year global warming potential (GWP100 \u2248 2540 CO\u2082 equivalents){1,2,3\u20135}'
         '\u2014for routine use from 1 January 2026 under Regulation (EU) 2024/573, while '
         'permitting documented clinical exceptions.{2} The choice of GWP metric and time '
         'horizon remains debated for short-lived halogenated anesthetics such as desflurane '
         '(atmospheric lifetime \u2248 14 years), because GWP100 may not reflect their '
-        'instantaneous radiative forcing or steady-state atmospheric concentrations.{3} '
+        'instantaneous radiative forcing or steady-state atmospheric concentrations.{6} '
         'Desflurane also has recognized pharmacokinetic advantages, including faster '
-        'emergence and extubation than sevoflurane in selected surgical populations.{4} The '
+        'emergence and extubation than sevoflurane in selected surgical populations.{7} The '
         'American Society of Anesthesiologists has recommended deactivation of central '
         'nitrous oxide piping on environmental grounds.{8} NHS England and NHS Scotland '
         'have independently decommissioned desflurane.{9,10} Each of these measures targets '
@@ -1043,7 +1043,7 @@ def write_jatm_paper():
         'advantages, the contested suitability of GWP100 for short-lived anesthetics, and '
         'the risk of reducing anesthetic diversity amid recurring propofol and sevoflurane '
         'shortages\u2014 underscore the need for cautious, evidence-based policy and for '
-        'market studies that do not rely on a single sales channel.{3,4,22}')
+        'market studies that do not rely on a single sales channel.{6,7,22}')
 
     doc.add_paragraph(
         'The timing of the price decline may have practical implications. A substantial '
@@ -1193,24 +1193,24 @@ def write_jatm_paper():
         '7 February 2024 on fluorinated greenhouse gases. Official Journal of the European '
         'Union. 2024;L 2024/573.',
         # 3
+        'Sherman J, Le C, Lamers V, et al. Life cycle greenhouse gas emissions of '
+        'anesthetic drugs. Anesth Analg. 2012;114:1086\u201390.',
+        # 4
+        'Hendrickx JFA, Nielsen OJ, De Hert S, et al. The science behind banning '
+        'desflurane: a narrative review. Eur J Anaesthesiol. 2022;39:818\u201324.',
+        # 5
+        'White SM, Shelton CL, Gelb AW, et al. Principles of environmentally-sustainable '
+        'anaesthesia: a global consensus statement from the World Federation of Societies of '
+        'Anaesthesiologists. Anaesthesia. 2022;77:201\u201312.',
+        # 6
         'Sulbaek Andersen MP, Nielsen OJ, Sherman JD. Assessing the potential climate impact '
         'of anaesthetic gases. Lancet Planet Health. 2023;7(7):e622\u2013e629. '
         'doi:10.1016/S2542-5196(23)00084-0.',
-        # 4
+        # 7
         'Hariyanto H, Widiastuti M, Pandrya CO, et al. Comparison of desflurane and sevoflurane '
         'as maintenance inhalational anaesthetic agents for adult patients undergoing '
         'neurosurgeries: a systematic review and meta-analysis of randomised trials. '
         'Indian J Anaesth. 2025;69(1):65\u201377. doi:10.4103/ija.ija_1215_24.',
-        # 5
-        'Sherman J, Le C, Lamers V, et al. Life cycle greenhouse gas emissions of '
-        'anesthetic drugs. Anesth Analg. 2012;114:1086\u201390.',
-        # 6
-        'Hendrickx JFA, Nielsen OJ, De Hert S, et al. The science behind banning '
-        'desflurane: a narrative review. Eur J Anaesthesiol. 2022;39:818\u201324.',
-        # 7
-        'White SM, Shelton CL, Gelb AW, et al. Principles of environmentally-sustainable '
-        'anaesthesia: a global consensus statement from the World Federation of Societies of '
-        'Anaesthesiologists. Anaesthesia. 2022;77:201\u201312.',
         # 8
         'American Society of Anesthesiologists Committee on Environmental Health. Statement on '
         'deactivating central piped nitrous oxide to mitigate avoidable health care pollution. '

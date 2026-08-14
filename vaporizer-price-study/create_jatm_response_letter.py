@@ -163,8 +163,10 @@ def main():
         'among several trend tests is expected under multiple testing. We therefore do '
         'not interpret it as a clinically meaningful trend.')
 
-    mwp = fmt_float((powd.get('power_mannwhitney') or 0) * 100, 1, default='N/A')
-    wtp = fmt_float((powd.get('power_welch_t') or 0) * 100, 1, default='N/A')
+    mwp_val = powd.get('power_mannwhitney')
+    wtp_val = powd.get('power_welch_t')
+    mwp = fmt_float(mwp_val * 100 if mwp_val is not None else None, 1, default='N/A')
+    wtp = fmt_float(wtp_val * 100 if wtp_val is not None else None, 1, default='N/A')
     mlo = fmt_float(boot.get('mean_diff_ci95', [None, None])[0], 0, default='N/A')
     mhi = fmt_float(boot.get('mean_diff_ci95', [None, None])[1], 0, default='N/A')
     mdlo = fmt_float(boot.get('median_diff_ci95', [None, None])[0], 0, default='N/A')
