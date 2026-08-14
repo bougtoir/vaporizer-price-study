@@ -2,6 +2,8 @@
 import os
 import json
 import numpy as np
+import pandas as pd
+from scipy import stats as sp_stats
 from docx import Document
 from docx.shared import Pt, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -54,6 +56,68 @@ def fmt_float(v, prec=3, default='N/A'):
     except Exception:
         pass
     return default
+
+
+def fmt_p(p):
+    try:
+        p = float(p)
+        if np.isnan(p):
+            return 'N/A'
+        if p < 0.001:
+            return '<0.001'
+        return f'{p:.3f}'
+    except Exception:
+        return 'N/A'
+
+
+def compute_trend_results():
+    csv_path = os.path.join(DATA_DIR, 'combined_cleaned.csv')
+    try:
+        df = pd.read_csv(csv_path)
+        df['date_sold'] = pd.to_datetime(df['date_sold'])
+    except Exception:
+        return {}
+    proposal = pd.Timestamp('2022-04-05')
+    agreement = pd.Timestamp('2023-10-05')
+    adoption = pd.Timestamp('2024-02-07')
+    reg = pd.Timestamp('2026-01-01')
+
+    def classify_period(d):
+        d = pd.Timestamp(d)
+        if d < proposal:
+            return 1
+        elif d < agreement:
+            return 2
+        elif d < adoption:
+            return 3
+        elif d < reg:
+            return 4
+        else:
+            return 5
+
+    trend_results = {}
+    for agent in ['Desflurane', 'Sevoflurane', 'Isoflurane']:
+        sub = df[df['agent_type'] == agent].copy()
+        sub['period_num'] = sub['date_sold'].apply(classify_period)
+        sub['days'] = (sub['date_sold'] - sub['date_sold'].min()).dt.days
+        rho, rho_p = sp_stats.spearmanr(sub['days'], sub['price_usd'])
+        tau, tau_p = sp_stats.kendalltau(sub['period_num'], sub['price_usd'])
+        sub['quarter'] = sub['date_sold'].dt.to_period('Q')
+        qm = sub.groupby('quarter')['price_usd'].agg(['median', 'count'])
+        qm = qm[qm['count'] >= 3]
+        if len(qm) >= 4:
+            q_rho, q_p = sp_stats.spearmanr(range(len(qm)), qm['median'].values)
+        else:
+            q_rho, q_p = float('nan'), float('nan')
+        trend_results[agent] = {
+            'spearman_rho': rho, 'spearman_p': rho_p,
+            'kendall_tau': tau, 'kendall_p': tau_p,
+            'quarterly_rho': q_rho, 'quarterly_p': q_p,
+        }
+    return trend_results
+
+
+iso_tr = compute_trend_results().get('Isoflurane', {})
 
 
 def add_bullet(doc, title, body, indent=0):
@@ -135,12 +199,18 @@ def main():
     add_bullet(doc, '4. Multiple testing across trend tests.',
         'We have added an explicit multiple-testing acknowledgment in the Statistical analysis '
         'section and in the Discussion. Because trend tests (Spearman, Kendall \u03c4, and '
-        'quarterly Spearman) were applied to each of three agent types, the probability of at '
-        'least one nominally significant P value arising under the null is inflated. No formal '
+        'quarterly Spearman) were applied to each of three agent types, the probability of '
+        'nominally significant P values arising under the null is inflated. No formal '
         'family-wise correction was applied; P values were interpreted alongside effect magnitude, '
-        'direction, and consistency across tests. The isolated isoflurane Spearman P=0.044 is '
-        'therefore not interpreted as evidence of a true trend, and the desflurane finding is '
-        'supported by consistency across Spearman, Kendall \u03c4, and quarterly median analyses.')
+        'direction, and consistency across tests. For isoflurane, both Spearman '
+        f'(\u03c1={iso_tr.get("spearman_rho", float("nan")):.2f}, '
+        f'P={fmt_p(iso_tr.get("spearman_p", float("nan")))}) and Kendall \u03c4 '
+        f'(\u03c4={iso_tr.get("kendall_tau", float("nan")):.2f}, '
+        f'P={fmt_p(iso_tr.get("kendall_p", float("nan")))}) tests reached nominal significance at '
+        'the transaction level, but the quarterly median trend was not significant and effect sizes '
+        'were small; these isolated P values are therefore interpreted cautiously and not considered '
+        'evidence of a true trend. The desflurane finding is supported by consistency across '
+        'Spearman, Kendall \u03c4, and quarterly median analyses.')
 
     add_heading(doc, 'Reviewer 2', level=1)
 

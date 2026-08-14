@@ -411,17 +411,27 @@ def write_jatm_paper():
     run.font.size = Pt(14)
 
     doc.add_paragraph()
-    add_para(doc, '[Author names to be inserted]', size=Pt(12), italic=True,
-             alignment=WD_ALIGN_PARAGRAPH.CENTER)
-    add_para(doc, '[Affiliations to be inserted]', size=Pt(12), italic=True,
-             alignment=WD_ALIGN_PARAGRAPH.CENTER)
+    author_p = doc.add_paragraph()
+    author_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    add_superscript_text(author_p, 'Onishi Tatsuki{1}, Tatsuyoshi Ikenoue{1,2}', size=Pt(12))
+    aff1_p = doc.add_paragraph()
+    aff1_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    add_superscript_text(aff1_p,
+        '{1}Data Science and AI Innovation Research Promotion Center, Shiga University',
+        size=Pt(12))
+    aff2_p = doc.add_paragraph()
+    aff2_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    add_superscript_text(aff2_p,
+        '{2}Department of Public Health, Faculty of Medicine, University of Miyazaki',
+        size=Pt(12))
     doc.add_paragraph()
 
     # Corresponding author
     p = doc.add_paragraph()
     add_run_styled(p, 'Corresponding author: ', bold=True, size=Pt(12))
-    add_run_styled(p, '[Name, Department, Institution, Address, Country. '
-                   'Tel: [number]; e-mail: [address]]', size=Pt(12))
+    add_run_styled(p, 'Onishi Tatsuki; Data Science and AI Innovation Research Promotion Center, '
+                   'Shiga University; 1-1-1, Bamba, Hikone, Shiga, 522-8522, Japan; '
+                   'Telephone: +81-749-27-1023; E-mail: bougtoir@gmail.com', size=Pt(12))
 
     doc.add_paragraph()
 
@@ -489,11 +499,11 @@ def write_jatm_paper():
         f'P={fmt_p(des_tr["kendall_p"])}), '
         f'with a {des_pct:.0f}% decline pre- to post-restriction '
         f'(Cohen\u2019s d={des_d:.2f}). '
-        f'Sevoflurane showed no consistent trend. Isoflurane reached '
-        f'nominal significance (\u03c1={iso_tr["spearman_rho"]:.2f}, '
-        f'P={fmt_p(iso_tr["spearman_p"])}), but the small correlation was not '
-        f'supported by other trend metrics; with multiple trend tests, an isolated '
-        f'P value near 0.05 is expected by chance.')
+        f'Sevoflurane showed no trend. Isoflurane reached '
+        f'nominal significance in Spearman (\u03c1={iso_tr["spearman_rho"]:.2f}, '
+        f'P={fmt_p(iso_tr["spearman_p"])}) and Kendall \u03c4 (\u03c4={iso_tr["kendall_tau"]:.2f}, '
+        f'P={fmt_p(iso_tr["kendall_p"])}) tests, but the quarterly median trend was not '
+        f'significant; these isolated P values, with small effect sizes, are interpreted cautiously.')
 
     # Conclusions
     p = doc.add_paragraph()
@@ -647,12 +657,14 @@ def write_jatm_paper():
         'Cohen\u2019s d values were performed using the large-sample variance approximation.')
     doc.add_paragraph(
         'Because trend tests (Spearman, Kendall \u03c4, and quarterly Spearman) were applied '
-        'to each of three agent types, the probability of at least one nominally significant P '
-        'value arising under the null is inflated. We did not apply a formal family-wise '
+        'to each of three agent types, the probability of nominally significant P '
+        'values arising under the null is inflated. We did not apply a formal family-wise '
         'multiple-testing correction; instead, P values were interpreted alongside effect '
-        'magnitude, direction, and consistency across tests. An isolated P value near 0.05 '
-        f'(e.g., isoflurane Spearman P={fmt_p(iso_tr["spearman_p"])}) was therefore not '
-        'considered evidence of a true trend.')
+        'magnitude, direction, and consistency across tests. For isoflurane, both Spearman '
+        f'(P={fmt_p(iso_tr["spearman_p"])}) and Kendall \u03c4 (P={fmt_p(iso_tr["kendall_p"])}) '
+        'tests reached nominal significance at the transaction level, but the quarterly median '
+        'trend was not significant and effects were small; these P values were therefore '
+        'interpreted cautiously and not considered evidence of a true trend.')
     doc.add_paragraph(
         'Sensitivity analyses were performed to assess robustness and to address causal '
         'interpretation. First, we used bootstrap resampling (10,000 iterations) of the pre- and '
@@ -724,8 +736,9 @@ def write_jatm_paper():
         add_table_data_row(t1, data)
     p_t1fn = doc.add_paragraph()
     add_run_styled(p_t1fn, 'Note: ', bold=True, size=Pt(9))
-    add_run_styled(p_t1fn, 'The Spearman correlation for isoflurane reached nominal '
-        'significance (P=0.044), but the magnitude was small (\u03c1=0.081) and the '
+    add_run_styled(p_t1fn, 'The Spearman and Kendall \u03c4 tests for isoflurane reached '
+        f'nominal significance (P={fmt_p(iso_tr["spearman_p"])} and '
+        f'P={fmt_p(iso_tr["kendall_p"])}, respectively), but effect sizes were small and the '
         'quarterly median trend was not significant; this is therefore not interpreted '
         'as a clinically meaningful temporal trend.', size=Pt(9), italic=True)
     doc.add_paragraph()
@@ -866,14 +879,15 @@ def write_jatm_paper():
     insert_inline_figure(doc, FIGURE_MAP[4])
 
     doc.add_paragraph(
-        f'Isoflurane vaporizer prices were similarly stable. Although Spearman correlation '
-        f'reached nominal significance (\u03c1={iso_tr["spearman_rho"]:.2f}, '
-        f'P={fmt_p(iso_tr["spearman_p"])}), the magnitude was very small and the '
-        f'quarterly median trend was not significant (\u03c1={iso_tr["quarterly_rho"]:.2f}, '
-        f'P={fmt_p(iso_tr["quarterly_p"])}). A single P value below 0.05 in one of several '
-        f'trend tests is expected under multiple testing and does not indicate a consistent '
-        f'directional trend. The pre-/post-ban comparison showed a non-significant '
-        f'{abs(iso_pct):.0f}% decline (P={fmt_p(iso_u_pval)}, Mann\u2013Whitney U) (Fig. 6).')
+        f'Isoflurane vaporizer prices were similarly stable. Spearman '
+        f'(\u03c1={iso_tr["spearman_rho"]:.2f}, P={fmt_p(iso_tr["spearman_p"])}) and Kendall '
+        f'\u03c4 (\u03c4={iso_tr["kendall_tau"]:.2f}, P={fmt_p(iso_tr["kendall_p"])}) tests reached '
+        f'nominal significance at the transaction level, but the quarterly median trend was not '
+        f'significant (\u03c1={iso_tr["quarterly_rho"]:.2f}, P={fmt_p(iso_tr["quarterly_p"])}) '
+        f'and effect sizes were small. These isolated P values are expected under multiple testing '
+        f'and do not indicate a consistent directional trend. The pre-/post-ban comparison showed '
+        f'a non-significant {abs(iso_pct):.0f}% decline (P={fmt_p(iso_u_pval)}, '
+        f'Mann\u2013Whitney U) (Fig. 6).')
 
     # Insert Fig. 6 inline
     insert_inline_figure(doc, FIGURE_MAP[5])
@@ -975,10 +989,13 @@ def write_jatm_paper():
                 f'rather than a discrete shock. The DiD and CITS results are best interpreted as '
                 f'sensitivity, not causal, analyses.')
     doc.add_paragraph(
-        'We did not family-wise correct trend tests across three agents; an isolated P value '
-        f'near 0.05 (e.g., isoflurane Spearman P={fmt_p(iso_tr["spearman_p"])}) is expected by '
-        f'chance. The desflurane finding is supported by consistency across Spearman, Kendall \u03c4, '
-        f'and quarterly median analyses.')
+        'We did not family-wise correct trend tests across three agents. For isoflurane, '
+        f'Spearman (P={fmt_p(iso_tr["spearman_p"])}) and Kendall \u03c4 '
+        f'(P={fmt_p(iso_tr["kendall_p"])}) tests were nominally significant at the transaction '
+        'level, but the quarterly median trend was not significant and effect sizes were small; '
+        'these isolated P values are expected by chance and are not interpreted as a true trend. '
+        'The desflurane finding is supported by consistency across Spearman, Kendall \u03c4, '
+        'and quarterly median analyses.')
 
     sevo_vs_iso = es_comparisons['Sevoflurane_vs_Isoflurane']
     doc.add_paragraph(
@@ -1119,7 +1136,9 @@ def write_jatm_paper():
     # DECLARATIONS (JATM order)
     # ============================================================
     add_heading_styled(doc, 'CRediT authorship contribution statement', level=1)
-    doc.add_paragraph('[To be completed by authors using CRediT taxonomy]')
+    doc.add_paragraph('O.T.: Conceptualization, Methodology, Software, Formal analysis, '
+                      'Writing - original draft, Writing - review & editing')
+    doc.add_paragraph('T.I.: Writing - original draft, Writing - review & editing')
 
     add_heading_styled(doc, 'Disclosure statement', level=1)
     doc.add_paragraph('The authors declare that they have no known competing financial '
@@ -1149,6 +1168,13 @@ def write_jatm_paper():
 
     add_heading_styled(doc, 'Acknowledgments', level=1)
     doc.add_paragraph('None.')
+
+    add_heading_styled(doc, 'Declaration of Generative Artificial Intelligence (AI) in Scientific Writing', level=1)
+    doc.add_paragraph(
+        'During the preparation of this work the author used Devin (devin.ai) in order to format '
+        'the text and choose words that suited the tone, and to help writing codes. After using '
+        'this tool/service, the author reviewed and edited the content as needed and takes full '
+        'responsibility for the content of the published article.')
 
     doc.add_page_break()
 
