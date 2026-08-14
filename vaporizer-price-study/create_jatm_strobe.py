@@ -49,8 +49,8 @@ def create_strobe_checklist():
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = p.add_run(
-        'Targeted environmental regulation without observable collateral market damage: '
-        'the EU desflurane ban and secondary market vaporizer prices')
+        'Association between the EU desflurane phase-out and secondary market '
+        'vaporizer prices: an observational time-series analysis')
     run.italic = True
     run.font.size = Pt(10)
 
