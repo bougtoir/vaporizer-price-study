@@ -40,24 +40,22 @@ def write_cover_letter():
 
     # Body
     doc.add_paragraph(
-        'We are resubmitting our revised manuscript entitled "Targeted environmental regulation '
-        'and secondary market vaporizer prices: an observational analysis of the EU desflurane '
-        'phase-out" (Manuscript Number JATMED-D-26-00064) for reconsideration as an Article in '
-        'the Journal of Anesthesia and Translational Medicine.')
+        'We are resubmitting our revised manuscript entitled "Association between the EU '
+        'desflurane phase-out and secondary market vaporizer prices: an observational '
+        'time-series analysis" (Manuscript Number JATMED-D-26-00064R1) for reconsideration as '
+        'an Article in the Journal of Anesthesia and Translational Medicine.')
 
     doc.add_paragraph(
         'We thank the Editor and the two reviewers for their constructive feedback. In this '
-        'revision we have (1) added sensitivity and control-series analyses including bootstrap '
-        'resampling, post-hoc power simulation, a comparative interrupted time-series model, and '
-        'a transaction-level difference-in-differences analysis; (2) softened the causal '
-        'interpretation throughout and replaced "ban/prohibited" with accurate wording about a '
-        'restriction on routine use with documented clinical exceptions; (3) expanded the '
-        'clinical and environmental context, including desflurane pharmacokinetic advantages, '
-        'the debate over GWP100 for short-lived anesthetics, and the importance of anesthetic '
-        'diversity for supply-chain resilience; and (4) strengthened the limitations section '
-        'regarding confounders, eBay generalizability, EU/non-EU transaction uncertainty, and '
-        'the small post-restriction sample. A detailed point-by-point response to reviewers is '
-        'enclosed.')
+        'minor revision we have (1) further softened the causal language in the title and '
+        'abstract; (2) clarified that the short post-restriction window reflects the Terapeak '
+        'three-year historical window ending at data extraction in March 2026; (3) explicitly '
+        'interpreted the non-significant transaction-level DiD post-restriction coefficient in '
+        'light of a violated parallel-trend assumption; and (4) added an acknowledgment that '
+        'trend tests across three agents raise a multiple-testing concern, with isoflurane '
+        'reaching nominal significance in two transaction-level tests but not in the quarterly '
+        'median analysis and with small effect sizes. A detailed point-by-point response to '
+        'reviewers is enclosed.')
 
     doc.add_paragraph(
         'The manuscript has not been published previously and is not under consideration by '
@@ -75,10 +73,10 @@ def write_cover_letter():
     # Closing
     doc.add_paragraph('Sincerely,')
     doc.add_paragraph()
-    doc.add_paragraph('[Corresponding author name]')
-    doc.add_paragraph('[Department, Institution]')
-    doc.add_paragraph('[Address]')
-    doc.add_paragraph('[Email]')
+    doc.add_paragraph('Onishi Tatsuki')
+    doc.add_paragraph('Data Science and AI Innovation Research Promotion Center, Shiga University')
+    doc.add_paragraph('1-1-1, Bamba, Hikone, Shiga, 522-8522, Japan')
+    doc.add_paragraph('E-mail: bougtoir@gmail.com')
 
     path = os.path.join(out_dir, 'jatm_cover_letter.docx')
     doc.save(path)
