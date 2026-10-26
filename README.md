@@ -211,3 +211,8 @@ Reproduction tiers used in the audit:
 No analysis required independent reimplementation: all VOR numbers were
 reproduced by the original code. Thanks to external reproducibility feedback for
 motivating the portability and specification fixes in this revision.
+
+## Acknowledgment
+I am grateful to Dr. Jürgen Degenfellner (Zurich University of Applied Sciences, ZHAW, Switzerland) for independently rerunning the publicly available analysis code and verifying the principal numerical results of this study on behalf of the [Journal of Reproducible Health Sciences](https://jrephealth.fairpressjournals.com/).
+His careful examination and constructive feedback prompted improvements to the portability of the analysis scripts and the documentation of the statistical specifications, particularly the distinction between Kendall's tau-b based on ordered regulatory phases and Spearman's correlation based on chronological sale dates.
+I sincerely appreciate this independent contribution to the transparency and reproducibility of the research.
