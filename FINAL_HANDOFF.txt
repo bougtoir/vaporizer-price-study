@@ -1,0 +1,77 @@
+FINAL HANDOFF — vaporizer-price-study portability & reproducibility audit
+========================================================================
+Date (UTC):        2026-10-26
+Repository:        https://github.com/bougtoir/vaporizer-price-study
+Published DOI:     https://doi.org/10.1016/j.jatmed.2026.08.002
+Baseline SHA:      cac26f92ab61d41b630f4e85465db27988e2632f (main)
+Final SHA:         94996eadbcfaae10430ec602b538b7067cefb5d5
+PR:                https://github.com/bougtoir/vaporizer-price-study/pull/2
+                   (OPEN — not merged, per instructions)
+
+OVERALL VERDICT:  PASS WITH CONDITIONS
+
+CHANGED FILES
+-------------
+- README.md                                      rewritten (DOI, layout, provenance,
+                                                 commands, exact statistical specs)
+- requirements.txt                               added (tested versions only)
+- .gitignore                                     added
+- 17 scripts                                     /home/ubuntu/vaporizer_research ->
+                                                 Path(__file__).resolve().parent
+                                                 (analyze.py, analyze_old.py,
+                                                 analyze_asking_prices.py,
+                                                 compile_asking_prices.py,
+                                                 compile_all_asking_prices.py,
+                                                 create_anaesthesia_cover_letter.py,
+                                                 create_pptx.py,
+                                                 create_strobe_checklist.py,
+                                                 gen_english.py, gen_japanese.py,
+                                                 gen_main.py, patch_papers.py,
+                                                 scrape_asking_prices.py,
+                                                 scrape_asking_v2.py,
+                                                 write_anaesthesia_english.py,
+                                                 write_anaesthesia_japanese.py,
+                                                 write_papers.py)
+- vaporizer-price-study/audit/                   BASELINE_INVENTORY.md,
+                                                 COMPUTATIONAL_INTEGRITY_AUDIT.md,
+                                                 DATA_TEXT_FIGURE_CONSISTENCY.md,
+                                                 FINAL_ADVERSARIAL_REVIEW.md,
+                                                 FINAL_QC_REPORT.md,
+                                                 baseline/final stdout logs,
+                                                 data_checksums.txt
+- vaporizer-price-study/tests/                   test_reproducibility.py (11 tests)
+
+NUMERICAL REPRODUCTION
+----------------------
+All external targets reproduced exactly: N 158/321/554 (1033); desflurane
+-31.4% (pre $238.30+-194.75 n=141; post $163.58+-113.47 n=17), Welch p=0.027,
+Mann-Whitney p=0.148, Cohen's d=-0.47 CI [-0.97, 0.04]; sevoflurane +12.3%
+MW p=0.150 d=0.17; isoflurane -11.2% MW p=0.184 d=-0.16; all nine trend
+statistics match (Spearman on sale-date ordinal; Kendall tau-b on ordinal
+phase 1-5; quarterly-median Spearman on quarter index, count>=3 quarters).
+combined_cleaned.csv regenerates byte-identically; statistics_summary.csv
+matches except last-ulp float digits.
+
+SENSITIVITY ANALYSES
+--------------------
+Bootstrap / DiD / CITS: NOT VERIFIED — no implementations exist in the
+repository and none are reported in the published article. Documented; not
+fabricated.
+
+UNRESOLVED ITEMS / REMAINING RISKS
+----------------------------------
+1. analyze_old.py (legacy pipeline incl. Worthpoint) writes to the same
+   generated filenames as analyze.py and can clobber published-path outputs.
+   README warns; retained for provenance.
+2. statistics_summary.csv regeneration can differ in last-ulp digits across
+   scipy versions; all reported precision is stable.
+3. Figure image bytes depend on matplotlib/seaborn versions; plotted data are
+   identical.
+4. Live scrapers were not re-executed (out of published analysis path).
+5. Manuscript Methods says "four phases" while code uses a 1-5 scheme with an
+   empty phase 1 — wording quirk only, no numeric impact; documented, not
+   altered.
+
+PUBLISHED SCIENTIFIC RESULTS ALTERED: NONE — no estimand, method, or result
+was changed; edits were limited to path constants, documentation, tests, and
+audit evidence.
