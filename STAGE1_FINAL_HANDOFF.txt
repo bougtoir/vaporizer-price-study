@@ -2,7 +2,7 @@ STAGE 1 FINAL AUDIT — HANDOFF
 Repository: https://github.com/bougtoir/vaporizer-price-study
 PR: https://github.com/bougtoir/vaporizer-price-study/pull/2 (OPEN — NOT merged)
 Baseline SHA:    a79c6c4a41801ec98f364e83f9b57d23216bc2cc
-Final head SHA:  16eb38526145ad92687df670e1d94ea336dc530c
+Final head SHA:  a84a845c1508fe9cbdb8bbc3ff71594fd640fb9c (branch tip at handoff; this file's own commit follows)
 Date: 2026-10-26 (JST)
 
 VERDICT: PASS — all principal published numerical results, including the
