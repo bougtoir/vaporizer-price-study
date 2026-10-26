@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 """
 Generate Anaesthesia-format cover letters (English and Japanese) as .docx files.
 Target journal: Anaesthesia (Association of Anaesthetists, Wiley)
@@ -6,7 +13,7 @@ from docx import Document
 from docx.shared import Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
-outdir = '/home/ubuntu/vaporizer_research/papers/'
+outdir = f'{OUT_DIR}/'
 
 
 def setup_doc():

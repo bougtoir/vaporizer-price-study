@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 #!/usr/bin/env python3
 """
 Compile eBay asking price data from browser-extracted listings for all three agents.
@@ -137,7 +144,7 @@ isoflurane = [
     ("VetEquip COMPAC5 Isoflurane Vaporizer", 263317, "Used"),
 ]
 
-output_path = "/home/ubuntu/vaporizer_research/data/ebay_asking_prices.csv"
+output_path = f"{DATA_DIR}/ebay_asking_prices.csv"
 with open(output_path, 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(['title', 'price_jpy', 'price_usd', 'condition', 'agent', 'date_collected'])

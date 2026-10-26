@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 #!/usr/bin/env python3
 """Create English and Japanese PPTX files with figures (1 per slide)."""
 
@@ -7,8 +14,8 @@ from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
 import os
 
-figdir = '/home/ubuntu/vaporizer_research/figures/'
-outdir = '/home/ubuntu/vaporizer_research/papers/'
+figdir = f'{FIG_DIR}/'
+outdir = f'{OUT_DIR}/'
 
 # Figure files and captions
 figures = [

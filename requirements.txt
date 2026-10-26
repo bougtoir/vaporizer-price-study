@@ -1,0 +1,11 @@
+# Versions used to regenerate the published outputs during the portability audit
+# (Python 3.10, Linux). Older/newer versions may also work; see README
+# "Reproducibility limitations" for version-sensitivity notes.
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+seaborn>=0.13
+statsmodels>=0.14
+python-docx>=1.0
+pytest>=7.0

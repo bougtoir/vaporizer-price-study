@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 #!/usr/bin/env python3
 """Scrape eBay active listings using headless Selenium with improved selectors."""
 
@@ -48,7 +55,7 @@ def scrape_query(driver, query, agent_type):
         
         # Save page source for debugging on first query
         if page == 1 and agent_type == 'Desflurane':
-            with open('/home/ubuntu/vaporizer_research/data/debug_page.html', 'w') as f:
+            with open(f'{DATA_DIR}/debug_page.html', 'w') as f:
                 f.write(driver.page_source)
             print(f"  Saved debug page source")
         
@@ -171,7 +178,7 @@ def main():
     driver.quit()
     
     # Save
-    outpath = '/home/ubuntu/vaporizer_research/data/ebay_asking_prices.csv'
+    outpath = f'{DATA_DIR}/ebay_asking_prices.csv'
     if all_listings:
         fieldnames = ['title', 'price_usd', 'listing_type', 'condition', 'agent_type', 'scrape_date']
         with open(outpath, 'w', newline='', encoding='utf-8') as f:

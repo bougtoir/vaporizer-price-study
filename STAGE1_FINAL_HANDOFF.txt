@@ -1,0 +1,52 @@
+STAGE 1 FINAL AUDIT — HANDOFF
+Repository: https://github.com/bougtoir/vaporizer-price-study
+PR: https://github.com/bougtoir/vaporizer-price-study/pull/2 (OPEN — NOT merged)
+Baseline SHA:    a79c6c4a41801ec98f364e83f9b57d23216bc2cc
+Final head SHA:  a84a845c1508fe9cbdb8bbc3ff71594fd640fb9c (branch tip at handoff; this file's own commit follows)
+Date: 2026-10-26 (JST)
+
+VERDICT: PASS — all principal published numerical results, including the
+reported sensitivity analyses, were reproduced using the original analytical
+code. Table S1 and figures verified for numerical consistency.
+MERGE RECOMMENDATION: MERGE READY (maintainer decision; not merged).
+
+EXECUTED COMMANDS (all from /tmp, cwd-independent)
+  python vaporizer-price-study/analyze.py                        exit 0
+  python vaporizer-price-study/create_jca_tables.py              exit 0
+  python vaporizer-price-study/revision_sensitivity_analysis.py  exit 0
+  python -m pytest tests/ -v                                     13/13 PASS
+Environment: Python 3.10.12, pandas 2.3.3, numpy 2.2.6, scipy 1.15.3,
+statsmodels 0.15.0, matplotlib 3.10.9, seaborn 0.13.2, pytest 9.1.1.
+
+CHANGED THIS COMMIT
+  + audit/STAGE1_BASELINE.md, STAGE1_COMPUTATIONAL_INTEGRITY.md,
+    STAGE1_DATA_TEXT_FIGURE_CONSISTENCY.md, STAGE1_ADVERSARIAL_REVIEW.md,
+    STAGE1_FINAL_QC.md, stage1_output_checksums.txt, 4 execution logs
+  ~ corrected overbroad reproducibility wording in VOR_FINAL_QC_REPORT.md,
+    PUBLISHED_RESULT_TRACEABILITY.md, VOR_ADVERSARIAL_REVIEW.md,
+    PREVIOUS_AUDIT_RECONCILIATION.md, VOR_FINAL_HANDOFF.txt, README.md,
+    DRAFT_REPLY_TO_DEGENFELLNER.txt
+  ~ README: added sensitivity-analysis run command
+
+PRINCIPAL ANALYSES — reproduced vs VOR
+  N=1033 (158/321/554); des −31.4%, MW p=0.1476, Welch p=0.0269, d=−0.469;
+  Spearman −0.277; Kendall −0.121; quarterly trends per spec. All exact at
+  reported precision.
+
+SENSITIVITY ANALYSES — reproduced vs VOR
+  bootstrap mean CI [−134.53,−10.70] (pub. −135..−11); median CI [−124,50];
+  power 0.284/0.5808; DiD 0.01784 p=0.9463; CITS −0.8843/+0.4465.
+
+REMAINING LIMITATIONS
+  - ScienceDirect VOR PDF not retrievable (PMC full text used).
+  - Package-version drift vs paper's stated env; outputs unaffected.
+  - DiD/CITS are non-confirmatory sensitivity analyses by the article's own
+    framing (pre-trend differential p=0.001).
+  - Table S1 / figures: numerical consistency, not byte-identical claim.
+
+CONFIRMATIONS
+  - No acknowledgment added to README: CONFIRMED
+  - No email drafted or sent: CONFIRMED
+  - No contact with external parties: CONFIRMED
+  - PR #2 remains unmerged: CONFIRMED
+  - Published article unmodified: CONFIRMED

@@ -1,0 +1,3 @@
+Table 1 saved: /home/ubuntu/repos/vaporizer-price-study/vaporizer-price-study/papers/jca_table1.docx
+Table 2 saved: /home/ubuntu/repos/vaporizer-price-study/vaporizer-price-study/papers/jca_table2.docx
+Table S1 saved: /home/ubuntu/repos/vaporizer-price-study/vaporizer-price-study/papers/jca_table_s1.docx

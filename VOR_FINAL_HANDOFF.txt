@@ -1,0 +1,51 @@
+VOR REPRODUCIBILITY AUDIT — FINAL HANDOFF
+Repository: bougtoir/vaporizer-price-study
+Branch: devin/1793007296-vaporizer-reproducibility-audit (PR #2, OPEN — NOT merged)
+Date: 2026-10-26 (JST)
+
+VERDICT: PASS — all principal published numerical results, including the
+reported sensitivity analyses, were reproduced using the original analytical
+code. Table S1 verified for numerical consistency. PR safe to merge: YES (maintainer decision; not merged here).
+
+WHAT CHANGED SINCE THE FIRST AUDIT REVISION
+1. Retrieved the actual VOR (PMC13573186; EuropePMC fullTextXML + PMC HTML;
+   ScienceDirect PDF bot-blocked — residual NOT VERIFIED, low risk).
+2. RETRACTED the previous claim that bootstrap/DiD/CITS are unreported and
+   unimplemented. Root cause: the prior audit used the in-repo JCA draft (not
+   the VOR) and searched only `main`; the code was on unmerged branch
+   devin/jatm-minor-revision-r1.
+3. Recovered original code: vaporizer-price-study/revision_sensitivity_analysis.py
+   (+ data/revision_sensitivity.json, data/revision_sensitivity_its.csv) now on
+   this branch. Executed it: regenerates outputs identically (seed 20260729).
+4. Reconciled Kendall spec: tau-b vs phase index 1–5 (phase 1 empty); the
+   "four phases" wording was a draft artifact, not a VOR discrepancy.
+5. Quarantined analyze_old.py to legacy/ — its output paths no longer collide
+   with the published pipeline.
+6. Added 2 regression tests (13/13 pass) pinning sensitivity outputs to VOR.
+7. Persisted VOR sources + SHA-256 ledger under audit/vor_sources/.
+
+NEW AUDIT DOCUMENTS (vaporizer-price-study/audit/)
+  VERSION_OF_RECORD_PROVENANCE.md      PUBLISHED_ANALYSIS_INVENTORY.md
+  PREVIOUS_AUDIT_RECONCILIATION.md     PUBLISHED_RESULT_TRACEABILITY.{csv,md}
+  SENSITIVITY_ANALYSIS_RECOVERY.md     KENDALL_SPECIFICATION_RECONCILIATION.md
+  VOR_ADVERSARIAL_REVIEW.md            VOR_FINAL_QC_REPORT.md
+  CORRESPONDENCE_IMPLICATIONS.md       DRAFT_REPLY_TO_DEGENFELLNER.txt (NOT sent)
+  vor_sources/                         VOR files + ledger.json (SHA-256)
+
+REPRODUCED VS VOR (spot values)
+  bootstrap des mean 95%CI: published −135..−11; reproduced [−134.53, −10.70]
+  bootstrap des median 95%CI: −124..50; reproduced [−124.0, 50.0]
+  power MW/Welch: 28.4%/58.1%; reproduced 0.284/0.5808
+  DiD post coef: 0.018 P=0.946; reproduced 0.01784 P=0.9463
+  CITS des level/slope: −0.88/+0.45; reproduced −0.8843/+0.4465
+  Table S1 medians/KW/spreads: NUMERICALLY CONSISTENT
+
+RESIDUAL CAVEATS
+  - ScienceDirect VOR PDF not diffed (bot-blocked); PMC text used.
+  - DiD/CITS are sensitivity analyses; pre-trend differential P=0.001 means
+    parallel-trends is not satisfied — article itself labels them non-confirmatory.
+  - Env: Python 3.10/pandas 2.3.3/scipy 1.15.3/statsmodels 0.15.0 vs paper's
+    3.12/2.2/1.14/0.14 — all outputs identical.
+
+DO NOT: merge PR #2 automatically; send the draft email; treat analyze_old.py
+as the analysis path; claim ScienceDirect-PDF verification.
