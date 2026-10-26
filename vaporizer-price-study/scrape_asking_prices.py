@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 #!/usr/bin/env python3
 """Scrape eBay active listings (asking prices) for desflurane, sevoflurane, isoflurane vaporizers."""
 
@@ -190,7 +197,7 @@ def main():
     driver.quit()
     
     # Save to CSV
-    outpath = '/home/ubuntu/vaporizer_research/data/ebay_asking_prices.csv'
+    outpath = f'{DATA_DIR}/ebay_asking_prices.csv'
     if all_listings:
         fieldnames = ['title', 'price_usd', 'price_text', 'listing_type', 'condition',
                       'location', 'shipping', 'agent_type', 'query', 'scrape_date', 'url']

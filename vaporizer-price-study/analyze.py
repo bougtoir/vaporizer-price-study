@@ -1,4 +1,11 @@
 import pandas as pd
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -98,7 +105,7 @@ agreement_date = pd.Timestamp('2023-10-05')      # Provisional trilogue agreemen
 # 1. LOAD AND CLEAN eBay (Terapeak) DATA
 # ==========================================
 
-data_dir = '/home/ubuntu/vaporizer_research/data'
+data_dir = f'{DATA_DIR}'
 
 def load_terapeak(filepath):
     """Load Terapeak CSV and standardize columns."""
@@ -298,7 +305,7 @@ for agent in ['Desflurane', 'Sevoflurane', 'Isoflurane']:
 # 3. FIGURES
 # ==========================================
 
-figdir = '/home/ubuntu/vaporizer_research/figures/'
+figdir = f'{FIG_DIR}/'
 
 colors = {'Desflurane': '#E74C3C', 'Sevoflurane': '#2E86C1', 'Isoflurane': '#27AE60'}
 markers = {'Desflurane': 'o', 'Sevoflurane': 's', 'Isoflurane': '^'}

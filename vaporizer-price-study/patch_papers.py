@@ -1,9 +1,16 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 #!/usr/bin/env python3
 """Patch write_papers.py to add literature review citations to Japanese sections."""
 
 import re
 
-with open('/home/ubuntu/vaporizer_research/write_papers.py', 'r') as f:
+with open(f'{SCRIPT_DIR}/write_papers.py', 'r') as f:
     lines = f.readlines()
 
 content = ''.join(lines)
@@ -108,7 +115,7 @@ else:
     print("ERROR: Japanese references block not found!")
 
 # Write back
-with open('/home/ubuntu/vaporizer_research/write_papers.py', 'w') as f:
+with open(f'{SCRIPT_DIR}/write_papers.py', 'w') as f:
     f.write(content)
 
 print("\nAll Japanese paper modifications saved!")

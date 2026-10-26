@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 """Generator script: appends the English paper function to write_papers.py"""
 
 code = '''
@@ -519,6 +526,6 @@ def write_english_paper():
 
 '''
 
-with open('/home/ubuntu/vaporizer_research/write_papers.py', 'a') as f:
+with open(f'{SCRIPT_DIR}/write_papers.py', 'a') as f:
     f.write(code)
 print("English paper function appended successfully")

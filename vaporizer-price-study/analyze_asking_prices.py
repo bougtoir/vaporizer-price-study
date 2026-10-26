@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 #!/usr/bin/env python3
 """
 Analyze eBay asking prices (active listings) as supplementary analysis.
@@ -10,9 +17,9 @@ from scipy import stats as sp_stats
 import json
 
 # Load asking prices
-asking = pd.read_csv('/home/ubuntu/vaporizer_research/data/ebay_asking_prices.csv')
+asking = pd.read_csv(f'{DATA_DIR}/ebay_asking_prices.csv')
 # Load sold prices
-sold = pd.read_csv('/home/ubuntu/vaporizer_research/data/combined_cleaned.csv')
+sold = pd.read_csv(f'{DATA_DIR}/combined_cleaned.csv')
 sold['date_sold'] = pd.to_datetime(sold['date_sold'])
 
 print("=" * 60)
@@ -106,7 +113,7 @@ all_results = {
     'spread': {k: {kk: float(vv) for kk, vv in v.items()} for k, v in spread_results.items()},
 }
 
-with open('/home/ubuntu/vaporizer_research/data/asking_price_analysis.json', 'w') as f:
+with open(f'{DATA_DIR}/asking_price_analysis.json', 'w') as f:
     json.dump(all_results, f, indent=2)
 
 print("\n\nResults saved to data/asking_price_analysis.json")

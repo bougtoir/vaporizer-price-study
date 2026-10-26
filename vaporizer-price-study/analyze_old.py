@@ -1,4 +1,11 @@
 import pandas as pd
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -110,9 +117,9 @@ def load_and_clean(filepath, agent_type):
     df = df[mask]
     return df
 
-des = load_and_clean('/home/ubuntu/vaporizer_research/data/desflurane_ebay.csv', 'Desflurane')
-sevo = load_and_clean('/home/ubuntu/vaporizer_research/data/sevoflurane_ebay.csv', 'Sevoflurane')
-iso = load_and_clean('/home/ubuntu/vaporizer_research/data/isoflurane_ebay.csv', 'Isoflurane')
+des = load_and_clean(f'{DATA_DIR}/desflurane_ebay.csv', 'Desflurane')
+sevo = load_and_clean(f'{DATA_DIR}/sevoflurane_ebay.csv', 'Sevoflurane')
+iso = load_and_clean(f'{DATA_DIR}/isoflurane_ebay.csv', 'Isoflurane')
 
 # Remove veterinary-specific systems from isoflurane (keep clinical vaporizers)
 vet_system_keywords = ['vetequip', 'vet equip', 'rodent', 'compac5', 'matrx vip', 'scavenging cube', 'anesthesia system', 'tabletop']
@@ -127,7 +134,7 @@ des = des[~lot_mask].copy()
 # 1b. LOAD WORTHPOINT DATA
 # ==========================================
 try:
-    wp = pd.read_csv('/home/ubuntu/vaporizer_research/data/worthpoint_data.csv')
+    wp = pd.read_csv(f'{DATA_DIR}/worthpoint_data.csv')
     wp['date_sold'] = pd.to_datetime(wp['sold_date'], errors='coerce')
     wp['price_usd'] = pd.to_numeric(wp['price_usd'], errors='coerce')
     wp['title'] = wp['title']
@@ -262,7 +269,7 @@ for agent in ['Desflurane', 'Sevoflurane', 'Isoflurane']:
 # 3. FIGURES
 # ==========================================
 
-figdir = '/home/ubuntu/vaporizer_research/figures/'
+figdir = f'{FIG_DIR}/'
 
 colors = {'Desflurane': '#E74C3C', 'Sevoflurane': '#2E86C1', 'Isoflurane': '#27AE60'}
 markers = {'Desflurane': 'o', 'Sevoflurane': 's', 'Isoflurane': '^'}
@@ -593,10 +600,10 @@ print("Figure 5 saved: Regulatory timeline overview")
 # 4. SAVE CLEANED DATA AND STATISTICS
 # ==========================================
 
-all_data.to_csv('/home/ubuntu/vaporizer_research/data/combined_cleaned.csv', index=False)
+all_data.to_csv(f'{DATA_DIR}/combined_cleaned.csv', index=False)
 
 stats_df = pd.DataFrame(results).T
-stats_df.to_csv('/home/ubuntu/vaporizer_research/data/statistics_summary.csv')
+stats_df.to_csv(f'{DATA_DIR}/statistics_summary.csv')
 
 # Save regulatory timeline as CSV for reference
 timeline_data = []
@@ -608,7 +615,7 @@ for key, event in regulatory_events.items():
         'description': event['description'],
     })
 timeline_df = pd.DataFrame(timeline_data)
-timeline_df.to_csv('/home/ubuntu/vaporizer_research/data/regulatory_timeline.csv', index=False)
+timeline_df.to_csv(f'{DATA_DIR}/regulatory_timeline.csv', index=False)
 
 print("\nAll data and analysis files saved successfully!")
 print(f"\nRegulatory timeline saved with {len(timeline_data)} events")

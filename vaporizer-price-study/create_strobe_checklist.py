@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 """
 Generate STROBE checklist for cross-sectional studies as editable .docx files.
 English and Japanese versions.
@@ -11,7 +18,7 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 import os
 
-outdir = '/home/ubuntu/vaporizer_research/papers/'
+outdir = f'{OUT_DIR}/'
 os.makedirs(outdir, exist_ok=True)
 
 def setup_doc():

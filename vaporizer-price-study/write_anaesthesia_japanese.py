@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 """
 Generate Anaesthesia-format Japanese paper as editable .docx file.
 Target journal: Anaesthesia (Association of Anaesthetists, Wiley)
@@ -26,13 +33,13 @@ import json
 # ==========================================
 # Load analysis results (same as English)
 # ==========================================
-data_dir = '/home/ubuntu/vaporizer_research/data'
+data_dir = f'{DATA_DIR}'
 stats_df = pd.read_csv(f'{data_dir}/statistics_summary.csv', index_col=0)
 combined = pd.read_csv(f'{data_dir}/combined_cleaned.csv')
 combined['date_sold'] = pd.to_datetime(combined['date_sold'])
 
-figdir = '/home/ubuntu/vaporizer_research/figures/'
-outdir = '/home/ubuntu/vaporizer_research/papers/'
+figdir = f'{FIG_DIR}/'
+outdir = f'{OUT_DIR}/'
 os.makedirs(outdir, exist_ok=True)
 
 try:

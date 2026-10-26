@@ -1,3 +1,10 @@
+
+from pathlib import Path
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_DIR = SCRIPT_DIR / 'data'
+FIG_DIR = SCRIPT_DIR / 'figures'
+OUT_DIR = SCRIPT_DIR / 'papers'
+
 """Generator script: appends the main block to write_papers.py"""
 
 code = '''
@@ -24,6 +31,6 @@ if __name__ == '__main__':
     print(f"  Japanese: {outdir}vaporizer_paper_japanese.docx")
 '''
 
-with open('/home/ubuntu/vaporizer_research/write_papers.py', 'a') as f:
+with open(f'{SCRIPT_DIR}/write_papers.py', 'a') as f:
     f.write(code)
 print("Main block appended successfully")
