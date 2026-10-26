@@ -15,8 +15,8 @@ branch and was never carried into the public repository. That is our
 repository-organization error, not a failure of your rerun. The script
 (revision_sensitivity_analysis.py) and its outputs are now included in the open
 audit pull request on the repository (still under review, not yet merged), together
-with a traceability matrix mapping every published number to the code that produces
-it.
+with a traceability matrix mapping the principal published results to the code
+that produces them.
 
 On your specific question about the Kendall test: the article's "ordered regulatory
 phases" is implemented as Kendall's tau-b (the scipy default) of price against an
@@ -29,7 +29,7 @@ is now stated explicitly in the README; thank you for pressing on it.
 
 I should be transparent about residual limits rather than overstate the outcome:
 the audit environment uses slightly different package versions than those stated in
-the paper (all published numbers still reproduce identically), and the ScienceDirect
+the paper (all principal published results still reproduce identically), and the ScienceDirect
 PDF could not be diffed programmatically against the PMC full text we used as the
 reference. The DiD and CITS models are, as the article states, sensitivity analyses
 whose causal assumptions are only partly met.

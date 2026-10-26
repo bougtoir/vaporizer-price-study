@@ -30,8 +30,10 @@ wrong ref (`main` only). Both earlier documents are corrected in place.
 
 ## Overall verdict
 
-**PASS** (upgraded from PASS WITH CONDITIONS). Every number in the published
-article is reproduced by the original code, including all sensitivity analyses.
+**PASS** (upgraded from PASS WITH CONDITIONS). All principal published numerical
+results, including the reported sensitivity analyses, were reproduced using the
+original analytical code. Supplementary Table S1 was verified for numerical
+consistency (full regeneration not established).
 
 - **PR safe to merge: YES** — changes are additive (path fixes, docs, tests,
   recovered original script) plus README corrections; no estimator, method, or

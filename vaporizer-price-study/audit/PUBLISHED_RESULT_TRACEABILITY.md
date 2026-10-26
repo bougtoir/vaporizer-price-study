@@ -41,8 +41,10 @@ regenerated `data/revision_sensitivity.json` byte-identically to the copy stored
 
 ## Summary
 
-Every number reported in the VOR was reproduced by the original code — **no
-reimplementation was needed**. The earlier "NOT VERIFIED" classification applied
-only because the code was on an unmerged branch and the wrong manuscript was audited.
+All principal published numerical results, including the reported sensitivity
+analyses, were reproduced by the original code — **no reimplementation was
+needed**. Table S1 was verified for numerical consistency (not full
+regeneration). The earlier "NOT VERIFIED" classification applied only because
+the code was on an unmerged branch and the wrong manuscript was audited.
 
 Machine-readable form: `PUBLISHED_RESULT_TRACEABILITY.csv`.

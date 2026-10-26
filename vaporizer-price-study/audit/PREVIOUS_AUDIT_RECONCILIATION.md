@@ -33,7 +33,7 @@ produced them exists in this repository's git history.
 | "NOT VERIFIED, absent by design" | **Replaced** — all four sensitivity analyses are now ORIGINAL-CODE REPRODUCED (see `PUBLISHED_RESULT_TRACEABILITY.md`). |
 | Portability fixes, checksum reproduction of `combined_cleaned.csv`, N=158/321/554, primary statistics, figure consistency | **Unaffected** — those were verified against data and code, not against the wrong manuscript. |
 | "methods text says four phases but code uses five" | **Refined** — see `KENDALL_SPECIFICATION_RECONCILIATION.md`; the VOR wording ("ordered regulatory phases", milestones Apr 2022 → Jan 2026) is consistent with a 5-level coding where phase 1 is empty. |
-| Overall verdict PASS WITH CONDITIONS | **Upgraded** — with original sensitivity code recovered and all published numbers reproduced, the verdict becomes PASS (see `VOR_FINAL_QC_REPORT.md`). The "conditions" now reduce to: keep `analyze_old.py` quarantined and the VOR sources ledger. |
+| Overall verdict PASS WITH CONDITIONS | **Upgraded** — with original sensitivity code recovered and all principal published numerical results reproduced (Table S1 numerically consistent), the verdict becomes PASS (see `VOR_FINAL_QC_REPORT.md`). The "conditions" now reduce to: keep `analyze_old.py` quarantined and the VOR sources ledger. |
 
 ## Lesson
 

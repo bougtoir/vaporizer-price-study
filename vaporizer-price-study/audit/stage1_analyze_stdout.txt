@@ -1,0 +1,122 @@
+RAW DATA LOADED (eBay Terapeak 3-Year):
+  Desflurane: 160 listings
+  Sevoflurane: 390 listings
+  Isoflurane: 663 listings
+
+AFTER FILTERING (vaporizers only):
+  Desflurane: 158 listings
+  Sevoflurane: 321 listings
+  Isoflurane: 554 listings
+
+============================================================
+DATA SUMMARY (eBay Terapeak 3-Year Data)
+============================================================
+Total listings: 1033
+Date range: 2023-03-28 to 2026-03-24
+
+Desflurane:
+  Total listings: 158
+  Date range: 2023-03-30 to 2026-03-18
+  Price range: $25.00 - $1500.00
+  Mean price: $230.26
+  Median price: $197.00
+  Pre-regulation: n=141, mean=$238.30, median=$200.00
+  Post-regulation: n=17, mean=$163.58, median=$101.00
+  Detailed periods:
+    Post-proposal: n=31, mean=$234.20, median=$209.00
+    Post-agreement: n=18, mean=$244.33, median=$252.00
+    Post-adoption: n=92, mean=$238.50, median=$149.99
+    Post-ban: n=17, mean=$163.58, median=$101.00
+
+Sevoflurane:
+  Total listings: 321
+  Date range: 2023-03-30 to 2026-03-23
+  Price range: $50.00 - $2750.00
+  Mean price: $552.01
+  Median price: $447.95
+  Pre-regulation: n=287, mean=$544.94, median=$430.00
+  Post-regulation: n=34, mean=$611.71, median=$508.00
+  Detailed periods:
+    Post-proposal: n=53, mean=$522.48, median=$447.95
+    Post-agreement: n=34, mean=$555.09, median=$499.99
+    Post-adoption: n=200, mean=$549.16, median=$426.00
+    Post-ban: n=34, mean=$611.71, median=$508.00
+
+Isoflurane:
+  Total listings: 554
+  Date range: 2023-03-28 to 2026-03-24
+  Price range: $30.23 - $1275.00
+  Mean price: $284.11
+  Median price: $241.12
+  Pre-regulation: n=510, mean=$286.65, median=$247.59
+  Post-regulation: n=44, mean=$254.65, median=$200.00
+  Detailed periods:
+    Post-proposal: n=108, mean=$302.33, median=$270.00
+    Post-agreement: n=68, mean=$288.54, median=$231.50
+    Post-adoption: n=334, mean=$281.19, median=$225.00
+    Post-ban: n=44, mean=$254.65, median=$200.00
+
+============================================================
+STATISTICAL ANALYSIS
+============================================================
+
+Desflurane:
+  Pre-regulation:  n=141, mean=$238.30 +/- $194.75, median=$200.00
+  Post-regulation: n=17, mean=$163.58 +/- $113.47, median=$101.00
+  Change: -31.4%
+  Mann-Whitney U: U=1457.0, p=0.1476
+  Welch's t-test: t=2.332, p=0.0269
+  Cohen's d: -0.469
+
+Sevoflurane:
+  Pre-regulation:  n=287, mean=$544.94 +/- $414.66, median=$430.00
+  Post-regulation: n=34, mean=$611.71 +/- $364.93, median=$508.00
+  Change: 12.3%
+  Mann-Whitney U: U=4141.5, p=0.1497
+  Welch's t-test: t=-0.994, p=0.3259
+  Cohen's d: 0.171
+
+Isoflurane:
+  Pre-regulation:  n=510, mean=$286.65 +/- $214.61, median=$247.59
+  Post-regulation: n=44, mean=$254.65 +/- $191.36, median=$200.00
+  Change: -11.2%
+  Mann-Whitney U: U=12572.5, p=0.1843
+  Welch's t-test: t=1.054, p=0.2969
+  Cohen's d: -0.157
+
+----------------------------------------
+MULTI-PERIOD ANALYSIS (Kruskal-Wallis)
+----------------------------------------
+
+Desflurane: H=4.82, p=0.1852 (Post-proposal, Post-agreement, Post-adoption, Post-ban)
+
+Sevoflurane: H=2.23, p=0.5264 (Post-proposal, Post-agreement, Post-adoption, Post-ban)
+
+Isoflurane: H=5.42, p=0.1437 (Post-proposal, Post-agreement, Post-adoption, Post-ban)
+
+Figure 1 saved: Price time series with regulatory milestones
+Figure 2 saved: Box plot comparison
+Figure 3 saved: Monthly median prices with regulatory milestones
+Figure 4 saved: Price distribution histograms
+Figure 5 saved: Regulatory timeline overview
+Figure 6 saved: Quarterly trends
+
+============================================================
+ALL DATA AND ANALYSIS FILES SAVED SUCCESSFULLY
+============================================================
+
+Total listings analyzed: 1033
+  Desflurane: 158
+  Sevoflurane: 321
+  Isoflurane: 554
+
+Data source: eBay (Terapeak) - 3 years of sold listings
+Date range: 2023-03-28 to 2026-03-24
+
+Regulatory timeline: 6 events
+  2022-04-05: European Commission publishes revised F-gas Regulation proposal
+  2023-03-30: European Parliament approves F-gas proposal in plenary
+  2023-10-05: Council and Parliament reach provisional agreement
+  2024-02-07: Regulation (EU) 2024/573 formally adopted
+  2024-03-11: Regulation enters into force (20 days after OJ publication)
+  2026-01-01: Desflurane prohibition takes effect under Art. 11(1) / Annex IV

@@ -57,6 +57,10 @@ cd vaporizer-price-study        # the project directory inside the repo
 python analyze.py               # -> data/combined_cleaned.csv, statistics_summary.csv,
                                 #    regulatory_timeline.csv, figures/fig1-6.{png,pdf}
 python create_jca_tables.py     # -> papers/jca_table{1,2,s1}.docx
+python revision_sensitivity_analysis.py
+                                # -> data/revision_sensitivity.json,
+                                #    data/revision_sensitivity_its.csv
+                                #    (bootstrap, power, DiD, CITS; ~minutes)
 python write_jca_english.py     # -> papers/jca_manuscript_english.docx   (optional)
 python analyze_asking_prices.py # -> data/asking_price_analysis.json      (optional)
 python -m pytest tests/ -v      # regression tests (see below)
@@ -191,7 +195,8 @@ inventory, portability fixes, full numerical reproduction, data–text–figure
 consistency, adversarial review, QC report) is documented under
 `vaporizer-price-study/audit/`. A follow-on **Version-of-Record audit**
 (2026-10-26) retrieved the published article (PMC13573186), recovered the
-original sensitivity-analysis code, and reproduced every published number —
+original sensitivity-analysis code, and reproduced all principal published
+numerical results —
 see `audit/VOR_FINAL_QC_REPORT.md`.
 
 Reproduction tiers used in the audit:

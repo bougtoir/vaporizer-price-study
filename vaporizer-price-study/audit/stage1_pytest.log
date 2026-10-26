@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/ubuntu/repos/vaporizer-price-study/vaporizer-price-study
+plugins: anyio-4.14.2
+collecting ... collected 13 items
+
+tests/test_reproducibility.py::test_no_machine_specific_paths_in_scripts PASSED [  7%]
+tests/test_reproducibility.py::test_data_files_discoverable PASSED       [ 15%]
+tests/test_reproducibility.py::test_sample_counts PASSED                 [ 23%]
+tests/test_reproducibility.py::test_desflurane_pre_post PASSED           [ 30%]
+tests/test_reproducibility.py::test_trend_tests_use_correct_predictors[Desflurane--0.277-0.0005--0.121-0.049] PASSED [ 38%]
+tests/test_reproducibility.py::test_trend_tests_use_correct_predictors[Sevoflurane-0.01-0.862-0.039-0.365] PASSED [ 46%]
+tests/test_reproducibility.py::test_trend_tests_use_correct_predictors[Isoflurane--0.086-0.044--0.074-0.025] PASSED [ 53%]
+tests/test_reproducibility.py::test_quarterly_median_trend[Desflurane--0.601-0.039] PASSED [ 61%]
+tests/test_reproducibility.py::test_quarterly_median_trend[Sevoflurane--0.092-0.777] PASSED [ 69%]
+tests/test_reproducibility.py::test_quarterly_median_trend[Isoflurane--0.321-0.285] PASSED [ 76%]
+tests/test_reproducibility.py::test_scripts_run_from_external_cwd PASSED [ 84%]
+tests/test_reproducibility.py::test_sensitivity_script_exists_and_specs PASSED [ 92%]
+tests/test_reproducibility.py::test_sensitivity_outputs_match_published PASSED [100%]
+
+============================== 13 passed in 9.64s ==============================

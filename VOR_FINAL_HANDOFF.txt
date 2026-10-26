@@ -3,8 +3,9 @@ Repository: bougtoir/vaporizer-price-study
 Branch: devin/1793007296-vaporizer-reproducibility-audit (PR #2, OPEN — NOT merged)
 Date: 2026-10-26 (JST)
 
-VERDICT: PASS — every number in the Version of Record is reproduced by the
-original code. PR safe to merge: YES (maintainer decision; not merged here).
+VERDICT: PASS — all principal published numerical results, including the
+reported sensitivity analyses, were reproduced using the original analytical
+code. Table S1 verified for numerical consistency. PR safe to merge: YES (maintainer decision; not merged here).
 
 WHAT CHANGED SINCE THE FIRST AUDIT REVISION
 1. Retrieved the actual VOR (PMC13573186; EuropePMC fullTextXML + PMC HTML;
