@@ -4,7 +4,7 @@ Date (UTC):        2026-10-26
 Repository:        https://github.com/bougtoir/vaporizer-price-study
 Published DOI:     https://doi.org/10.1016/j.jatmed.2026.08.002
 Baseline SHA:      cac26f92ab61d41b630f4e85465db27988e2632f (main)
-Final SHA:         94996eadbcfaae10430ec602b538b7067cefb5d5
+Final SHA:         5518b31fe7e34a2709b42d8ce5365f96b1bc2405
 PR:                https://github.com/bougtoir/vaporizer-price-study/pull/2
                    (OPEN — not merged, per instructions)
 
