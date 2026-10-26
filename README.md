@@ -28,7 +28,8 @@ vaporizer-price-study/
 ├── papers/                  manuscript/table/cover-letter .docx outputs
 ├── tests/                   regression tests (recompute from raw inputs)
 ├── audit/                   portability & reproduction audit evidence
-└── (legacy scripts: analyze_old.py, write_papers.py, write_anaesthesia_*,
+├── legacy/                  analyze_old.py quarantined (see legacy/README.md)
+└── (legacy scripts: write_papers.py, write_anaesthesia_*,
     scrape_*, compile_*, gen_*, patch_papers.py — kept for provenance;
     they are not part of the published analysis path)
 ```
@@ -122,10 +123,27 @@ Note: the observed data begin 2023-03-28, so phase 1 is empty in practice and
 
 ### Sensitivity analyses
 
-The published article does **not** report bootstrap confidence intervals,
-difference-in-differences, or comparative interrupted time-series models, and no
-implementations of those methods exist in this repository. They are marked
-NOT VERIFIED in the accompanying audit rather than silently added.
+The published article reports four sensitivity analyses, implemented by
+`vaporizer-price-study/revision_sensitivity_analysis.py` (recovered from the
+revision branch `devin/jatm-minor-revision-r1`, where they were produced for the
+article's R1 revision; an earlier revision of this README wrongly stated they
+were unreported — corrected in the VOR audit, see
+`audit/PREVIOUS_AUDIT_RECONCILIATION.md`):
+
+- **Bootstrap pre/post CIs**: 10,000 resamples within pre and post groups;
+  percentile 95% CIs for mean and median differences; seed
+  `np.random.default_rng(20260729)`.
+- **Post-hoc power simulation**: lognormal MLE on log prices per group; 10,000
+  simulated pre/post pairs at observed n; power = fraction with P < 0.05.
+- **Difference-in-differences**: OLS on `log_price` with agent-specific post and
+  trend interactions (sevoflurane reference), HC3 robust SE.
+- **CITS**: OLS on monthly median `log` price with level/slope intervention
+  terms per agent, HAC (maxlags=3) SE.
+
+Outputs: `data/revision_sensitivity.json` and
+`data/revision_sensitivity_its.csv`. Re-running the script regenerates the JSON
+identically (seeded). These are sensitivity analyses; their causal assumptions
+are only partly met (see article).
 
 ## Dependencies
 
@@ -153,11 +171,15 @@ p-values within ±5% relative or ±0.001 absolute.
   digits across scipy versions.
 - Figures are regenerated deterministically but image bytes depend on
   matplotlib/seaborn versions (fonts, anti-aliasing); values plotted are the same.
-- `analyze_old.py`, `write_papers.py`, `write_anaesthesia_*.py`, `gen_*.py`,
+- `analyze_old.py` is quarantined under `legacy/` (VOR audit, 2026-10-26): it
+  uses a different cleaning pipeline (includes Worthpoint data) and previously
+  wrote to the same output filenames as `analyze.py`, clobbering published-path
+  outputs when run. Under `legacy/` its derived paths no longer collide. It is
+  retained for provenance only.
+- `write_papers.py`, `write_anaesthesia_*.py`, `gen_*.py`,
   `patch_papers.py`, and the scraper/compile scripts are retained for
   provenance. They run from any directory but are **not** the published
-  analysis path; `analyze_old.py` uses a different cleaning pipeline (includes
-  Worthpoint data) and must not be treated as the source of published numbers.
+  analysis path.
 - Scrapers (`scrape_asking_*.py`, `worthpoint_collector.py`) require live
   network access and marketplace credentials/selectors that are time-sensitive;
   they are included for provenance only.
@@ -167,5 +189,20 @@ p-values within ±5% relative or ±0.001 absolute.
 An independent computational-integrity and reproduction audit (baseline
 inventory, portability fixes, full numerical reproduction, data–text–figure
 consistency, adversarial review, QC report) is documented under
-`vaporizer-price-study/audit/`. Thanks to external reproducibility feedback for
+`vaporizer-price-study/audit/`. A follow-on **Version-of-Record audit**
+(2026-10-26) retrieved the published article (PMC13573186), recovered the
+original sensitivity-analysis code, and reproduced every published number —
+see `audit/VOR_FINAL_QC_REPORT.md`.
+
+Reproduction tiers used in the audit:
+
+- **ORIGINAL-CODE REPRODUCED** — original script executed, published value
+  produced exactly (all primary statistics and all four sensitivity analyses).
+- **NUMERICALLY CONSISTENT** — value matches; exact generating path or
+  environment not byte-identical (Table S1; package-version drift).
+- **NOT VERIFIED** — could not be checked (ScienceDirect PDF vs PMC text;
+  buyer geography — data do not exist).
+
+No analysis required independent reimplementation: all VOR numbers were
+reproduced by the original code. Thanks to external reproducibility feedback for
 motivating the portability and specification fixes in this revision.

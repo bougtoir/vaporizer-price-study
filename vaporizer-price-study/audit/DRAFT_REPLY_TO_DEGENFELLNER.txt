@@ -1,0 +1,50 @@
+Subject: Re: Independent rerun of vaporizer-price-study — results and a correction
+
+Dear Dr. Degenfellner,
+
+Thank you for your careful independent rerun of our eBay vaporizer analysis and for
+taking the time to report what you could and could not reproduce. Your message
+prompted a full version-of-record audit of the repository, and it surfaced a real
+defect on our side that I want to acknowledge directly.
+
+On the bootstrap, difference-in-differences, and CITS sensitivity analyses: you were
+correct that the implementing code was not reachable from the repository's default
+branch. The code did exist — it was written during the revision and produced exactly
+the numbers reported in the article — but it had been left on an unmerged working
+branch and was never carried into the public repository. That is our
+repository-organization error, not a failure of your rerun. The script
+(revision_sensitivity_analysis.py) and its outputs are now included in the open
+audit pull request on the repository (still under review, not yet merged), together
+with a traceability matrix mapping every published number to the code that produces
+it.
+
+On your specific question about the Kendall test: the article's "ordered regulatory
+phases" is implemented as Kendall's tau-b (the scipy default) of price against an
+ordinal phase index coded 1-5. The five phases are delimited by left-exclusive
+boundaries at 2022-04-05, 2023-10-05, 2024-02-07, and 2026-01-01; the first phase
+is empty because the Terapeak window begins March 2023, so in practice sales are
+distributed over phases 2-5. This is distinct from the Spearman test, which uses the
+individual sale dates. This specification was under-documented in the repository and
+is now stated explicitly in the README; thank you for pressing on it.
+
+I should be transparent about residual limits rather than overstate the outcome:
+the audit environment uses slightly different package versions than those stated in
+the paper (all published numbers still reproduce identically), and the ScienceDirect
+PDF could not be diffed programmatically against the PMC full text we used as the
+reference. The DiD and CITS models are, as the article states, sensitivity analyses
+whose causal assumptions are only partly met.
+
+Thank you also for the kind invitation regarding the Journal of Reproducible Health
+Sciences. I am genuinely interested in computational verification as a publication
+model — an independently executed rerun with a preserved environment record is, I
+think, the most honest form of replication. I would like to keep the possibility of
+a submission open without committing to a timeline just yet.
+
+To that end, would you be willing to share the run log and software environment
+(Python and package versions) from your attempted reproduction? If we document your
+rerun alongside ours, it would make the cross-environment evidence much stronger.
+
+With appreciation for the rigor of your check,
+
+Tatsuki Onishi
+[DRAFT — NOT SENT. Prepared by audit; requires author review before sending.]

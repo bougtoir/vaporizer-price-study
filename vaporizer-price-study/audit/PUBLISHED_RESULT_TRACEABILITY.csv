@@ -1,0 +1,27 @@
+published_item,vor_value,reproduced_value,source_code,classification,notes
+Sample N total,1033,1033,analyze.py (combined_cleaned.csv),ORIGINAL-CODE REPRODUCED,
+Desflurane n,158,158,analyze.py,ORIGINAL-CODE REPRODUCED,
+Sevoflurane n,321,321,analyze.py,ORIGINAL-CODE REPRODUCED,
+Isoflurane n,554,554,analyze.py,ORIGINAL-CODE REPRODUCED,
+Desflurane Spearman rho,-0.28 (P<0.001),-0.28 (P<0.001),create_jca_tables.py compute_trend,ORIGINAL-CODE REPRODUCED,IV=sale-date ordinal
+Desflurane Kendall tau,-0.12 (P=0.049),-0.12 (P=0.049),create_jca_tables.py compute_trend,ORIGINAL-CODE REPRODUCED,tau-b on phase index 1-5
+Sevoflurane trend,ns,ns,create_jca_tables.py,ORIGINAL-CODE REPRODUCED,
+Isoflurane Spearman rho,-0.09 (P=0.044),-0.09 (P=0.044),create_jca_tables.py,ORIGINAL-CODE REPRODUCED,
+Isoflurane Kendall tau,-0.07 (P=0.025),-0.07 (P=0.025),create_jca_tables.py,ORIGINAL-CODE REPRODUCED,
+Desflurane pre/post decline,31% (d=-0.47),31.4% (d=-0.47),analyze.py/create_jca_tables.py,ORIGINAL-CODE REPRODUCED,Welch p=0.027; MW p=0.148
+Bootstrap des mean-diff 95% CI,-135 to -11,"[-134.53, -10.70]",revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,seed 20260729; regenerated JSON identical
+Bootstrap des median-diff 95% CI,-124 to 50,"[-124.0, 50.0]",revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+Bootstrap des MW p median,~0.15,0.1459,revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+Bootstrap des Welch p median,~0.02,0.0240,revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+Post-hoc power MW (des),28.4% (n=141/17),0.284,revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,lognormal MLE; 10000 sims
+Post-hoc power Welch (des),58.1%,0.5808,revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+DiD desflurane post coef,0.018 (P=0.946),0.01784 (P=0.9463),revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,OLS log_price HC3; nobs 1033
+DiD pre-trend differential P,0.001,0.00129 (trend_desflurane),revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+CITS des level change,-0.88 (P<0.001),-0.8843 (P=2.4e-6),revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,OLS log monthly median HAC(3); nobs 111
+CITS des slope change,0.45 (P<0.001),0.4465 (P=4.0e-5),revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+CITS iso level change P,0.602,0.60247,revision_sensitivity_analysis.py,ORIGINAL-CODE REPRODUCED,
+Table S1 asking medians des/sev/iso,178 / 1277 / 556 USD,178 / 1277 / 556,create_jca_tables.py asking section,NUMERICALLY CONSISTENT,verified in prior consistency audit
+Table S1 KW H,66.0 (P<0.001),66.0,create_jca_tables.py,NUMERICALLY CONSISTENT,
+Table S1 bid-ask spreads,43% / 184% / 178%,43% / 184% / 178%,create_jca_tables.py,NUMERICALLY CONSISTENT,
+Software environment,"Python 3.12, pandas 2.2, scipy 1.14, statsmodels 0.14","Python 3.10.12, pandas 2.3.3, scipy 1.15.3, statsmodels 0.15.0",requirements.txt,NUMERICALLY CONSISTENT,version drift; all outputs identical
+Geographic buyer/seller data,not in article,n/a,n/a,NOT VERIFIED,data unavailable by design (acknowledged limitation)

@@ -1,0 +1,103 @@
+{
+  "bootstrap_pre_post": {
+    "Desflurane": {
+      "n_pre": 141,
+      "n_post": 17,
+      "observed_mean_diff": -74.71198164372132,
+      "observed_median_diff": -99.0,
+      "mean_diff_ci95": [
+        -134.52949749687107,
+        -10.704778785982489
+      ],
+      "median_diff_ci95": [
+        -124.0,
+        50.0
+      ],
+      "prop_mean_diff_lt0": 0.9892,
+      "prop_median_diff_lt0": 0.955,
+      "mannwhitney_p_median": 0.14592961861095238,
+      "welch_p_median": 0.02395699514788822
+    },
+    "Sevoflurane": {
+      "n_pre": 287,
+      "n_post": 34,
+      "observed_mean_diff": 66.77020188563222,
+      "observed_median_diff": 78.0,
+      "mean_diff_ci95": [
+        -62.29644345665083,
+        200.87585757839727
+      ],
+      "median_diff_ci95": [
+        -50.02499999999998,
+        250.01499999999965
+      ],
+      "prop_mean_diff_lt0": 0.161,
+      "prop_median_diff_lt0": 0.0812,
+      "mannwhitney_p_median": 0.14337514578923255,
+      "welch_p_median": 0.2976197354068336
+    },
+    "Isoflurane": {
+      "n_pre": 510,
+      "n_post": 44,
+      "observed_mean_diff": -31.999022281639924,
+      "observed_median_diff": -47.595,
+      "mean_diff_ci95": [
+        -87.78811325757573,
+        28.82338792335109
+      ],
+      "median_diff_ci95": [
+        -113.0,
+        29.99000000000001
+      ],
+      "prop_mean_diff_lt0": 0.8513,
+      "prop_median_diff_lt0": 0.902,
+      "mannwhitney_p_median": 0.1812904101144076,
+      "welch_p_median": 0.26835028924891163
+    }
+  },
+  "power_simulation": {
+    "Desflurane": {
+      "n_pre": 141,
+      "n_post": 17,
+      "power_mannwhitney": 0.284,
+      "power_welch_t": 0.5808,
+      "simulated_under": "lognormal with observed group-specific mu, sigma"
+    },
+    "Sevoflurane": {
+      "n_pre": 287,
+      "n_post": 34,
+      "power_mannwhitney": 0.1589,
+      "power_welch_t": 0.1234,
+      "simulated_under": "lognormal with observed group-specific mu, sigma"
+    },
+    "Isoflurane": {
+      "n_pre": 510,
+      "n_post": 44,
+      "power_mannwhitney": 0.2124,
+      "power_welch_t": 0.2442,
+      "simulated_under": "lognormal with observed group-specific mu, sigma"
+    }
+  },
+  "did_transaction_level": {
+    "nobs": 1033,
+    "r2": 0.22927914274896144,
+    "desflurane_post_coef": 0.017837573331218395,
+    "desflurane_post_p": 0.9463113099057591,
+    "isoflurane_post_coef": -0.16240887105873464,
+    "isoflurane_post_p": 0.4086905724281624,
+    "desflurane_trend_p": 0.0012879440452102417,
+    "isoflurane_trend_p": 0.40507834614700944,
+    "overall_post_coef": 0.10946573203723783,
+    "overall_post_p": 0.46434458743582496
+  },
+  "cits_monthly_medians": {
+    "nobs": 111,
+    "r2": 0.5220855137233956,
+    "desflurane_level_change_coef": -0.8842928623161823,
+    "desflurane_level_change_p": 2.431940858250513e-06,
+    "desflurane_slope_change_coef": 0.4465420204826638,
+    "desflurane_slope_change_p": 4.019868129400237e-05,
+    "isoflurane_level_change_coef": 0.042223322744648684,
+    "isoflurane_level_change_p": 0.602474133671856
+  }
+}

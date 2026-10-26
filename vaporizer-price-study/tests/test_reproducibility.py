@@ -156,3 +156,28 @@ def test_scripts_run_from_external_cwd(tmp_path):
                              cwd=str(tmp_path), capture_output=True, text=True,
                              timeout=600)
         assert res.returncode == 0, f'{script} failed from external cwd:\n{res.stderr[-2000:]}'
+
+
+def test_sensitivity_script_exists_and_specs():
+    """The recovered sensitivity script must exist and carry the published spec."""
+    src = (PROJECT_DIR / 'revision_sensitivity_analysis.py').read_text()
+    assert 'default_rng(20260729)' in src
+    assert 'N_BOOT = 10000' in src and 'N_SIM = 10000' in src
+    assert "cov_type='HC3'" in src and "cov_type='HAC'" in src
+
+
+def test_sensitivity_outputs_match_published():
+    """Stored sensitivity outputs must equal the published VOR values."""
+    import json
+    d = json.loads((PROJECT_DIR / 'data' / 'revision_sensitivity.json').read_text())
+    b = d['bootstrap_pre_post']['Desflurane']
+    assert b['n_pre'] == 141 and b['n_post'] == 17
+    assert round(b['mean_diff_ci95'][0]) == -135 and round(b['mean_diff_ci95'][1]) == -11
+    assert b['median_diff_ci95'] == [-124.0, 50.0]
+    assert abs(d['power_simulation']['Desflurane']['power_mannwhitney'] - 0.284) < 1e-9
+    assert abs(d['power_simulation']['Desflurane']['power_welch_t'] - 0.5808) < 1e-9
+    did = d['did_transaction_level']
+    assert did['nobs'] == 1033 and abs(did['desflurane_post_coef'] - 0.018) < 0.001
+    cits = d['cits_monthly_medians']
+    assert cits['nobs'] == 111 and abs(cits['desflurane_level_change_coef'] - (-0.88)) < 0.01
+    assert abs(cits['desflurane_slope_change_coef'] - 0.45) < 0.01

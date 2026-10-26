@@ -28,4 +28,11 @@ reproduction claims. Environment per `BASELINE_INVENTORY.md`.
   differences are expected); plotted data are identical.
 - The live scrapers were not re-executed (require live marketplace access);
   they are out of the published analysis path.
-- Bootstrap / DiD / CITS remain NOT VERIFIED — absent from repo and article.
+- ~~Bootstrap / DiD / CITS remain NOT VERIFIED — absent from repo and article.~~
+  **CORRECTED 2026-10-26** (VOR audit): this statement was false — the VOR
+  reports all of them and the original code existed on
+  `devin/jatm-minor-revision-r1`. All are now ORIGINAL-CODE REPRODUCED; see
+  `VOR_FINAL_QC_REPORT.md` and `PREVIOUS_AUDIT_RECONCILIATION.md`.
+- Note on item 11 above: the deterministic-pipeline finding held for `main`;
+  the sensitivity analyses do use a seeded RNG (`default_rng(20260729)`) and are
+  deterministic given the seed.

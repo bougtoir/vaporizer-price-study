@@ -11,9 +11,10 @@
 | Spearman + quarterly specification | PASS | date-ordinal Spearman; quarter-index median rho documented |
 | Descriptive statistics vs targets | PASS | N 158/321/554; means/SDs/pre/post n; % changes all exact |
 | Trend tests vs targets | PASS | all 9 rho/tau + p-values reproduce to reported precision |
-| Bootstrap | NOT VERIFIED | no implementation in repo; not reported in article |
-| Difference-in-differences | NOT VERIFIED | no implementation in repo; not reported in article |
-| CITS | NOT VERIFIED | no implementation in repo; not reported in article |
+| Bootstrap | ~~NOT VERIFIED~~ → ORIGINAL-CODE REPRODUCED (VOR audit) | recovered `revision_sensitivity_analysis.py`; published CIs match exactly |
+| Difference-in-differences | ~~NOT VERIFIED~~ → ORIGINAL-CODE REPRODUCED (VOR audit) | coef 0.01784, P=0.9463 = VOR |
+| CITS | ~~NOT VERIFIED~~ → ORIGINAL-CODE REPRODUCED (VOR audit) | −0.8843/+0.4465 = VOR |
+
 | Tables and figures | PASS | jca_table{1,2,s1}.docx regenerated; fig1–6 regenerated (rendering may differ by version; plotted data identical) |
 | Computational integrity | PASS | `audit/COMPUTATIONAL_INTEGRITY_AUDIT.md`; no hard-coded results |
 | Manuscript consistency | PASS | `audit/DATA_TEXT_FIGURE_CONSISTENCY.md`; all statements reproduce or match after rounding |
@@ -27,6 +28,7 @@ Conditions:
 1. `analyze_old.py` writes to the same generated filenames with a different
    pipeline; run order matters (README warns; outputs on this branch are the
    published-path versions).
-2. Bootstrap/DiD/CITS are NOT VERIFIED — absent by design, not failed.
+2. ~~Bootstrap/DiD/CITS are NOT VERIFIED~~ — CORRECTED (VOR audit): all four
+   sensitivity analyses are ORIGINAL-CODE REPRODUCED; see `VOR_FINAL_QC_REPORT.md`.
 3. `statistics_summary.csv` regeneration can differ in last-ulp digits across
    scipy versions; reported precision is stable.
